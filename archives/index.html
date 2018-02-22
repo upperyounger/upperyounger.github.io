@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-tw">
+<html class="theme-next gemini use-motion" lang="zh-CN">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -47,21 +47,21 @@
 
 
 
-<link href="/public/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/public/css/main.css?v=6.0.3" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/public/images/apple-touch-icon-next.png?v=6.0.3">
+<link href="/css/main.css?v=6.0.3" rel="stylesheet" type="text/css" />
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/public/images/favicon-32x32-next.png?v=6.0.3">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.3">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/public/images/favicon-16x16-next.png?v=6.0.3">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.3">
 
 
-  <link rel="mask-icon" href="/public/images/logo.svg?v=6.0.3" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.3" color="#222">
 
 
 
@@ -74,10 +74,10 @@
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/public/',
-    scheme: 'Muse',
+    root: '/',
+    scheme: 'Gemini',
     version: '6.0.3',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: false,
     fastclick: false,
     lazyload: false,
@@ -103,20 +103,23 @@
   <meta name="keywords" content="Hexo, NexT" />
 
 
+<meta name="description" content="Just do it!">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://sangyang.github.io/public/archives/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:locale" content="zh-tw">
+<meta property="og:title" content="UpperYounger">
+<meta property="og:url" content="http://sangyang.github.io/archives/index.html">
+<meta property="og:site_name" content="UpperYounger">
+<meta property="og:description" content="Just do it!">
+<meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="UpperYounger">
+<meta name="twitter:description" content="Just do it!">
 
 
 
 
 
 
-  <link rel="canonical" href="http://sangyang.github.io/public/archives/"/>
+  <link rel="canonical" href="http://sangyang.github.io/archives/"/>
 
 
 
@@ -125,13 +128,23 @@
     sidebar: "",
   };
 </script>
-  <title>Archive | Hexo</title>
+  <title>归档 | UpperYounger</title>
   
 
 
 
 
 
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?96b42932dfa8f6e35795ec450a0edc3f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
 
 
 
@@ -165,14 +178,14 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-right page-archive">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -181,9 +194,9 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/public/"  class="brand" rel="start">
+      <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
+        <span class="site-title">UpperYounger</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -209,14 +222,50 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/public/" rel="section">
-            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+          <a href="/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
         </li>
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/public/archives/" rel="section">
-            <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+          <a href="/archives/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />站点地图</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />公益 404</a>
         </li>
       
 
@@ -258,7 +307,7 @@
         
           
         
-        Um..! 3 posts in total. Keep on posting.
+        嗯..! 目前共计 3 篇日志。 继续努力。
       </span>
       
 
@@ -283,7 +332,7 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/public/2018/02/04/hello-world/" itemprop="url">
+            <a class="post-title-link" href="/2018/02/23/hello-world/" itemprop="url">
               
                 <span itemprop="name">Hello World</span>
               
@@ -293,9 +342,9 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2018-02-04T22:29:47+08:00"
-              content="2018-02-04" >
-          02-04
+              datetime="2018-02-23T02:09:18+08:00"
+              content="2018-02-23" >
+          02-23
         </time>
       </div>
 
@@ -320,7 +369,7 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/public/2018/02/04/first-draft/" itemprop="url">
+            <a class="post-title-link" href="/2018/02/04/first-draft/" itemprop="url">
               
                 <span itemprop="name">first draft</span>
               
@@ -357,7 +406,7 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/public/2018/02/04/first-blog-md/" itemprop="url">
+            <a class="post-title-link" href="/2018/02/04/first-blog-md/" itemprop="url">
               
                 <span itemprop="name">first-blog.md</span>
               
@@ -417,8 +466,8 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">John Doe</p>
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-author-name" itemprop="name">UpperYounger</p>
+              <p class="site-description motion-element" itemprop="description">Just do it!</p>
           </div>
 
           
@@ -426,10 +475,10 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/public/archives/">
+                  <a href="/archives/">
                 
                     <span class="site-state-item-count">3</span>
-                    <span class="site-state-item-name">posts</span>
+                    <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
               
@@ -476,7 +525,7 @@
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">John Doe</span>
+  <span class="author" itemprop="copyrightHolder">UpperYounger</span>
 
   
 
@@ -486,7 +535,7 @@
 
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
 
 
@@ -494,7 +543,7 @@
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.0.3</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.0.3</div>
 
 
 
@@ -557,38 +606,45 @@
 
   
   
-    <script type="text/javascript" src="/public/lib/jquery/index.js?v=2.1.3"></script>
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
   
 
   
   
-    <script type="text/javascript" src="/public/lib/velocity/velocity.min.js?v=1.2.1"></script>
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   
 
   
   
-    <script type="text/javascript" src="/public/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
   
 
 
   
 
 
-  <script type="text/javascript" src="/public/js/src/utils.js?v=6.0.3"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.3"></script>
 
-  <script type="text/javascript" src="/public/js/src/motion.js?v=6.0.3"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.3"></script>
 
 
 
   
-  
 
   
 
-  
 
-
-  <script type="text/javascript" src="/public/js/src/bootstrap.js?v=6.0.3"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.3"></script>
 
 
 
