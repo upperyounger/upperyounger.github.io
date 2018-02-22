@@ -1,2 +1,2 @@
-# upperyounger.github.io
-a simple blog
+# hexo-blog
+Alway write it!
