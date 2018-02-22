@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/public/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/public/css/main.css?v=6.0.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/public/images/apple-touch-icon-next.png?v=6.0.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/public/images/favicon-32x32-next.png?v=6.0.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/public/images/favicon-16x16-next.png?v=6.0.3">
+
+
+  <link rel="mask-icon" href="/public/images/logo.svg?v=6.0.3" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/public/',
+    scheme: 'Muse',
+    version: '6.0.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+<meta name="description" content="PracticalVimPractical Vim, Second EditionEdit Text at the Speed of Thought   by Drew Neil   https://pragprog.com/book/dnvim2/practical-vim-second-edition#details   # 以VIM默认配置启动，&amp;apos;-u NONE&amp;apos;使得启动">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UpperYounger">
+<meta property="og:url" content="http://sangyang.github.io/public/2018/02/23/PracticalVim/index.html">
+<meta property="og:site_name" content="UpperYounger">
+<meta property="og:description" content="PracticalVimPractical Vim, Second EditionEdit Text at the Speed of Thought   by Drew Neil   https://pragprog.com/book/dnvim2/practical-vim-second-edition#details   # 以VIM默认配置启动，&amp;apos;-u NONE&amp;apos;使得启动">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-02-22T18:28:35.103Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UpperYounger">
+<meta name="twitter:description" content="PracticalVimPractical Vim, Second EditionEdit Text at the Speed of Thought   by Drew Neil   https://pragprog.com/book/dnvim2/practical-vim-second-edition#details   # 以VIM默认配置启动，&amp;apos;-u NONE&amp;apos;使得启动">
+
+
+
+
+
+
+  <link rel="canonical" href="http://sangyang.github.io/public/2018/02/23/PracticalVim/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+  <title> | UpperYounger</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?96b42932dfa8f6e35795ec450a0edc3f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/public/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">UpperYounger</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/public/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/public/about/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/public/tags/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/public/categories/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/public/archives/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/public/schedule/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/public/sitemap.xml" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />站点地图</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/public/404/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />公益 404</a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://sangyang.github.io/public/public/2018/02/23/PracticalVim/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="UpperYounger">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/public/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="UpperYounger">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-23T02:29:02+08:00">2018-02-23</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="PracticalVim"><a href="#PracticalVim" class="headerlink" title="PracticalVim"></a>PracticalVim</h1><p>Practical Vim, Second Edition<br>Edit Text at the Speed of Thought  </p>
+<p>by Drew Neil  </p>
+<p><a href="https://pragprog.com/book/dnvim2/practical-vim-second-edition#details" target="_blank" rel="noopener">https://pragprog.com/book/dnvim2/practical-vim-second-edition#details</a>  </p>
+<pre><code># 以VIM默认配置启动，&apos;-u NONE&apos;使得启动时不加载vimrc,&apos;-N&apos;防止进入vi兼容模式  
+$ vim -u NONE -N  
+
+# 查看VIM版本，使用huge功能集  
+:version  
+
+# 查看帮助文档，这里以&apos;.&apos;命令为例  
+:h .  
+</code></pre><p>终端：Vim<br>GUI: GVim（OSX上的MacVim）    </p>
+<blockquote>
+<p>Vimtutor 支持多国语言, 在启动程序时, 可以通过指定国家代码来选择一种语言, 国家代码由 2 个字母组成,比如 ca, cs, de, el, eo, es, fr, hr, hu, it, ja, no, ro, 和 zh.例如, 如果想要阅读中文版的 Vimtutor, 只需要在命令行执行<code>$ vimtutor zh</code>。</p>
+</blockquote>
+<h2 id="第1章-Vim解决问题的方式"><a href="#第1章-Vim解决问题的方式" class="headerlink" title="第1章 Vim解决问题的方式"></a>第1章 Vim解决问题的方式</h2><h3 id="技巧1-结识-命令"><a href="#技巧1-结识-命令" class="headerlink" title="技巧1 结识 . 命令"></a>技巧1 结识 . 命令</h3><blockquote>
+<p><code>.</code> 命令可以重复上次的修改，它是Vim中最为强大的多面手，可以把 <code>.</code> 命令当成一个很小的宏。  </p>
+</blockquote>
+<pre><code>x 命令删除光标下的字符  
+u 命令撤销上次修改  
+. 命令重复上次修改  
+dd 命令删除整行  
+&gt;G 命令增加从当前行到文档末尾处的缩进层级  
+</code></pre><p>从进入<code>插入模式</code>的那一刻起，直到返回<code>普通模式</code>时为止，Vim会记录每一个按键操作。做出这样一个修改后再用 <code>.</code> 命令的话，它将会重新执行所有这些按键操作。  </p>
+<p>示例：the_vim_way/0_mechanics.txt<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br><span class="line">462</span><br><span class="line">463</span><br><span class="line">464</span><br><span class="line">465</span><br><span class="line">466</span><br><span class="line">467</span><br><span class="line">468</span><br><span class="line">469</span><br><span class="line">470</span><br><span class="line">471</span><br><span class="line">472</span><br><span class="line">473</span><br><span class="line">474</span><br><span class="line">475</span><br><span class="line">476</span><br><span class="line">477</span><br><span class="line">478</span><br><span class="line">479</span><br><span class="line">480</span><br><span class="line">481</span><br><span class="line">482</span><br><span class="line">483</span><br><span class="line">484</span><br><span class="line">485</span><br><span class="line">486</span><br><span class="line">487</span><br><span class="line">488</span><br><span class="line">489</span><br><span class="line">490</span><br><span class="line">491</span><br><span class="line">492</span><br><span class="line">493</span><br><span class="line">494</span><br><span class="line">495</span><br><span class="line">496</span><br><span class="line">497</span><br><span class="line">498</span><br><span class="line">499</span><br><span class="line">500</span><br><span class="line">501</span><br><span class="line">502</span><br><span class="line">503</span><br><span class="line">504</span><br><span class="line">505</span><br><span class="line">506</span><br><span class="line">507</span><br><span class="line">508</span><br><span class="line">509</span><br><span class="line">510</span><br><span class="line">511</span><br><span class="line">512</span><br><span class="line">513</span><br><span class="line">514</span><br><span class="line">515</span><br><span class="line">516</span><br><span class="line">517</span><br><span class="line">518</span><br><span class="line">519</span><br><span class="line">520</span><br><span class="line">521</span><br><span class="line">522</span><br><span class="line">523</span><br><span class="line">524</span><br><span class="line">525</span><br><span class="line">526</span><br><span class="line">527</span><br><span class="line">528</span><br><span class="line">529</span><br><span class="line">530</span><br><span class="line">531</span><br><span class="line">532</span><br><span class="line">533</span><br><span class="line">534</span><br><span class="line">535</span><br><span class="line">536</span><br><span class="line">537</span><br><span class="line">538</span><br><span class="line">539</span><br><span class="line">540</span><br><span class="line">541</span><br><span class="line">542</span><br><span class="line">543</span><br><span class="line">544</span><br><span class="line">545</span><br><span class="line">546</span><br><span class="line">547</span><br><span class="line">548</span><br><span class="line">549</span><br><span class="line">550</span><br><span class="line">551</span><br><span class="line">552</span><br><span class="line">553</span><br><span class="line">554</span><br><span class="line">555</span><br><span class="line">556</span><br><span class="line">557</span><br><span class="line">558</span><br><span class="line">559</span><br><span class="line">560</span><br><span class="line">561</span><br><span class="line">562</span><br><span class="line">563</span><br><span class="line">564</span><br><span class="line">565</span><br><span class="line">566</span><br><span class="line">567</span><br><span class="line">568</span><br><span class="line">569</span><br><span class="line">570</span><br><span class="line">571</span><br><span class="line">572</span><br><span class="line">573</span><br><span class="line">574</span><br><span class="line">575</span><br><span class="line">576</span><br><span class="line">577</span><br><span class="line">578</span><br><span class="line">579</span><br><span class="line">580</span><br><span class="line">581</span><br><span class="line">582</span><br><span class="line">583</span><br><span class="line">584</span><br><span class="line">585</span><br><span class="line">586</span><br><span class="line">587</span><br><span class="line">588</span><br><span class="line">589</span><br><span class="line">590</span><br><span class="line">591</span><br><span class="line">592</span><br><span class="line">593</span><br><span class="line">594</span><br><span class="line">595</span><br><span class="line">596</span><br><span class="line">597</span><br><span class="line">598</span><br><span class="line">599</span><br><span class="line">600</span><br><span class="line">601</span><br><span class="line">602</span><br><span class="line">603</span><br><span class="line">604</span><br><span class="line">605</span><br><span class="line">606</span><br><span class="line">607</span><br><span class="line">608</span><br><span class="line">609</span><br><span class="line">610</span><br><span class="line">611</span><br><span class="line">612</span><br><span class="line">613</span><br><span class="line">614</span><br><span class="line">615</span><br><span class="line">616</span><br><span class="line">617</span><br><span class="line">618</span><br><span class="line">619</span><br><span class="line">620</span><br><span class="line">621</span><br><span class="line">622</span><br><span class="line">623</span><br><span class="line">624</span><br><span class="line">625</span><br><span class="line">626</span><br><span class="line">627</span><br><span class="line">628</span><br><span class="line">629</span><br><span class="line">630</span><br><span class="line">631</span><br><span class="line">632</span><br><span class="line">633</span><br><span class="line">634</span><br><span class="line">635</span><br><span class="line">636</span><br><span class="line">637</span><br><span class="line">638</span><br><span class="line">639</span><br><span class="line">640</span><br><span class="line">641</span><br><span class="line">642</span><br><span class="line">643</span><br><span class="line">644</span><br><span class="line">645</span><br><span class="line">646</span><br><span class="line">647</span><br><span class="line">648</span><br><span class="line">649</span><br><span class="line">650</span><br><span class="line">651</span><br><span class="line">652</span><br><span class="line">653</span><br><span class="line">654</span><br><span class="line">655</span><br><span class="line">656</span><br><span class="line">657</span><br><span class="line">658</span><br><span class="line">659</span><br><span class="line">660</span><br><span class="line">661</span><br><span class="line">662</span><br><span class="line">663</span><br><span class="line">664</span><br><span class="line">665</span><br><span class="line">666</span><br><span class="line">667</span><br><span class="line">668</span><br><span class="line">669</span><br><span class="line">670</span><br><span class="line">671</span><br><span class="line">672</span><br><span class="line">673</span><br><span class="line">674</span><br><span class="line">675</span><br><span class="line">676</span><br><span class="line">677</span><br><span class="line">678</span><br><span class="line">679</span><br><span class="line">680</span><br><span class="line">681</span><br><span class="line">682</span><br><span class="line">683</span><br><span class="line">684</span><br><span class="line">685</span><br><span class="line">686</span><br><span class="line">687</span><br><span class="line">688</span><br><span class="line">689</span><br><span class="line">690</span><br><span class="line">691</span><br><span class="line">692</span><br><span class="line">693</span><br><span class="line">694</span><br><span class="line">695</span><br><span class="line">696</span><br><span class="line">697</span><br><span class="line">698</span><br><span class="line">699</span><br><span class="line">700</span><br><span class="line">701</span><br><span class="line">702</span><br><span class="line">703</span><br><span class="line">704</span><br><span class="line">705</span><br><span class="line">706</span><br><span class="line">707</span><br><span class="line">708</span><br><span class="line">709</span><br><span class="line">710</span><br><span class="line">711</span><br><span class="line">712</span><br><span class="line">713</span><br><span class="line">714</span><br><span class="line">715</span><br><span class="line">716</span><br><span class="line">717</span><br><span class="line">718</span><br><span class="line">719</span><br><span class="line">720</span><br><span class="line">721</span><br><span class="line">722</span><br><span class="line">723</span><br><span class="line">724</span><br><span class="line">725</span><br><span class="line">726</span><br><span class="line">727</span><br><span class="line">728</span><br><span class="line">729</span><br><span class="line">730</span><br><span class="line">731</span><br><span class="line">732</span><br><span class="line">733</span><br><span class="line">734</span><br><span class="line">735</span><br><span class="line">736</span><br><span class="line">737</span><br><span class="line">738</span><br><span class="line">739</span><br><span class="line">740</span><br><span class="line">741</span><br><span class="line">742</span><br><span class="line">743</span><br><span class="line">744</span><br><span class="line">745</span><br><span class="line">746</span><br><span class="line">747</span><br><span class="line">748</span><br><span class="line">749</span><br><span class="line">750</span><br><span class="line">751</span><br><span class="line">752</span><br><span class="line">753</span><br><span class="line">754</span><br><span class="line">755</span><br><span class="line">756</span><br><span class="line">757</span><br><span class="line">758</span><br><span class="line">759</span><br><span class="line">760</span><br><span class="line">761</span><br><span class="line">762</span><br><span class="line">763</span><br><span class="line">764</span><br><span class="line">765</span><br><span class="line">766</span><br><span class="line">767</span><br><span class="line">768</span><br><span class="line">769</span><br><span class="line">770</span><br><span class="line">771</span><br><span class="line">772</span><br><span class="line">773</span><br><span class="line">774</span><br><span class="line">775</span><br><span class="line">776</span><br><span class="line">777</span><br><span class="line">778</span><br><span class="line">779</span><br><span class="line">780</span><br><span class="line">781</span><br><span class="line">782</span><br><span class="line">783</span><br><span class="line">784</span><br><span class="line">785</span><br><span class="line">786</span><br><span class="line">787</span><br><span class="line">788</span><br><span class="line">789</span><br><span class="line">790</span><br><span class="line">791</span><br><span class="line">792</span><br><span class="line">793</span><br><span class="line">794</span><br><span class="line">795</span><br><span class="line">796</span><br><span class="line">797</span><br><span class="line">798</span><br><span class="line">799</span><br><span class="line">800</span><br><span class="line">801</span><br><span class="line">802</span><br><span class="line">803</span><br><span class="line">804</span><br><span class="line">805</span><br><span class="line">806</span><br><span class="line">807</span><br><span class="line">808</span><br><span class="line">809</span><br><span class="line">810</span><br><span class="line">811</span><br><span class="line">812</span><br><span class="line">813</span><br><span class="line">814</span><br><span class="line">815</span><br><span class="line">816</span><br><span class="line">817</span><br><span class="line">818</span><br><span class="line">819</span><br><span class="line">820</span><br><span class="line">821</span><br><span class="line">822</span><br><span class="line">823</span><br><span class="line">824</span><br><span class="line">825</span><br><span class="line">826</span><br><span class="line">827</span><br><span class="line">828</span><br><span class="line">829</span><br><span class="line">830</span><br><span class="line">831</span><br><span class="line">832</span><br><span class="line">833</span><br><span class="line">834</span><br><span class="line">835</span><br><span class="line">836</span><br><span class="line">837</span><br><span class="line">838</span><br><span class="line">839</span><br><span class="line">840</span><br><span class="line">841</span><br><span class="line">842</span><br><span class="line">843</span><br><span class="line">844</span><br><span class="line">845</span><br><span class="line">846</span><br><span class="line">847</span><br><span class="line">848</span><br><span class="line">849</span><br><span class="line">850</span><br><span class="line">851</span><br><span class="line">852</span><br><span class="line">853</span><br><span class="line">854</span><br><span class="line">855</span><br><span class="line">856</span><br><span class="line">857</span><br><span class="line">858</span><br><span class="line">859</span><br><span class="line">860</span><br><span class="line">861</span><br><span class="line">862</span><br><span class="line">863</span><br><span class="line">864</span><br><span class="line">865</span><br><span class="line">866</span><br><span class="line">867</span><br><span class="line">868</span><br></pre></td><td class="code"><pre><span class="line">Line one  </span><br><span class="line">Line two  </span><br><span class="line">Line three  </span><br><span class="line">Line four  </span><br><span class="line">```  </span><br><span class="line">`选中第一行` -- `&gt;G` -- `j` -- `.` -- `j.`  </span><br><span class="line">```txt  </span><br><span class="line">Line one  </span><br><span class="line">	Line two  </span><br><span class="line">		Line three  </span><br><span class="line">			Line four  </span><br><span class="line">```  </span><br><span class="line">  </span><br><span class="line">### 技巧2 不要自我重复  </span><br><span class="line">	  </span><br><span class="line">	^  命令把光标移动到当前行的第一个非空字符  </span><br><span class="line">	$  命令把光标移到行尾  </span><br><span class="line">  </span><br><span class="line">	# 以下命令都会从普通模式切换到插入模式  </span><br><span class="line">	a  命令在当前光标后添加内容  </span><br><span class="line">	A  命令在当前行结尾添加内容（等同于$a）  </span><br><span class="line">	c  命令修改从当前光标位置开始的内容  </span><br><span class="line">	C  命令修改到行尾（等同于c$）  </span><br><span class="line">	cl 命令修改一个字符  </span><br><span class="line">	s  命令修改一个字符（等同于cl）  </span><br><span class="line">	cc 命令修改整行  </span><br><span class="line">	S  命令修改整行（等同于cc）  </span><br><span class="line">	i  命令在当前光标位置插入字符  </span><br><span class="line">	I  命令在行首插入字符（等同于^i）  </span><br><span class="line">	o  命令在当前行后开始新行  </span><br><span class="line">	O  命令在当前行前开始新行（等同于ko）  </span><br><span class="line">  </span><br><span class="line">示例：the_vim_way/2_foo_bar.js  </span><br><span class="line">```txt  </span><br><span class="line">var foo = 1  </span><br><span class="line">var bar = &apos;a&apos;  </span><br><span class="line">var foobar = foo + bar  </span><br><span class="line">```  </span><br><span class="line">`A` -- `;&lt;Esc&gt;` -- `j.` -- `j.`  </span><br><span class="line">```txt  </span><br><span class="line">var foo = 1;  </span><br><span class="line">var bar = &apos;a&apos;;  </span><br><span class="line">var foobar = foo + bar;  </span><br><span class="line">```  </span><br><span class="line">### 技巧3 以退为进  </span><br><span class="line">  </span><br><span class="line">	s 命令删除光标下的字符，然后进入插入模式  </span><br><span class="line">	f&#123;char&#125; 命令查找下一处制定字符出现的位置，如果找到了，就把光标移到那里  </span><br><span class="line">	; 命令会重复查找上次 f 命令所查找的字符  </span><br><span class="line">  </span><br><span class="line">示例：the_vim_way/3_concat.js  </span><br><span class="line">```javascript  </span><br><span class="line">var foo = &quot;method(&quot;+argument1+&quot;,&quot;+argument2+&quot;)&quot;;  </span><br><span class="line">```  </span><br><span class="line">`f+` -- `s + ` -- `;` -- `.` -- `;.` -- `;.`  </span><br><span class="line">```javascript  </span><br><span class="line">var foo = &quot;method(&quot; + argument1 + &quot;,&quot; + argument2 + &quot;)&quot;;  </span><br><span class="line">```  </span><br><span class="line">  </span><br><span class="line">### 技巧4 执行、重复、回退  </span><br><span class="line">  </span><br><span class="line">#### 可重复的操作以及如何回退  </span><br><span class="line">| 目的 | 操作 | 重复 | 回退 |  </span><br><span class="line">| :--- | :--- | :--- | :--- |  </span><br><span class="line">| 做出一个修改 | &#123;edit&#125; | `.` | `u` |  </span><br><span class="line">| 在行内查找下一个指定字符 | f&#123;char&#125;/t&#123;char&#125; | `;` | `,` |  </span><br><span class="line">| 在行内查找上一个指定字符 | F&#123;char&#125;/T&#123;char&#125; | `;` | `,` |  </span><br><span class="line">| 在文档中查找下一处匹配项 | /pattern&lt;CR&gt; | `n` | `N` |  </span><br><span class="line">| 在文档中查找上一处匹配项 | ?pattern&lt;CR&gt; | `n` | `N` |  </span><br><span class="line">| 执行替换 | :s/target/replacement | `&amp;` | `u` |  </span><br><span class="line">| 执行一系列修改 | qx&#123;changes&#125;q | `@x` | `u` |  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">### 技巧5 查找并手动替换  </span><br><span class="line">  </span><br><span class="line">	:set hls 设置vim高亮显示  </span><br><span class="line">	*        命令查找当前光标下的单词  </span><br><span class="line">	/content 命令查找content  </span><br><span class="line">	cw       命令删除从光标位置到单词结尾间的字符，并进入插入模式  </span><br><span class="line">  </span><br><span class="line">示例：the_vim_way/1_copy_content.txt  </span><br><span class="line">```txt  </span><br><span class="line">...We&apos;re waiting for content before the site can go live...  </span><br><span class="line">...If you are content with this, let&apos;s go ahead with it...  </span><br><span class="line">...We&apos;ll launch as soon as we have the content...  </span><br><span class="line">```  </span><br><span class="line">`/content` -- `cw`copy -- `n` -- `.` -- `n.`  </span><br><span class="line">```txt  </span><br><span class="line">...We&apos;re waiting for copy before the site can go live...  </span><br><span class="line">...If you are content with this, let&apos;s go ahead with it...  </span><br><span class="line">...We&apos;ll launch as soon as we have the copy...  </span><br><span class="line">```  </span><br><span class="line">## 第2章 普通模式  </span><br><span class="line">  </span><br><span class="line">### 技巧8 把撤销单元切成块  </span><br><span class="line">在vim中，可以自己控制撤销的粒度。  </span><br><span class="line">  </span><br><span class="line">&gt; 如果在插入模式中使用了`&lt;up&gt;`、`&lt;down&gt;`、`&lt;left&gt;`或`&lt;right&gt;`光标键，将会产生一个新的撤销块，这也会对`.`命令的操作产生影响。  </span><br><span class="line">  </span><br><span class="line">### 技巧9 构造可重复的修改  </span><br><span class="line">  </span><br><span class="line">	db 命令删除从光标起始位置到单词开头的内容  </span><br><span class="line">	x 命令删除光标位置的字符  </span><br><span class="line">	b 命令把光标移到单词的开头  </span><br><span class="line">	dw 命令删除整个单词  </span><br><span class="line">	daw 命令删除光标位置的整个单词  </span><br><span class="line">  </span><br><span class="line">示例：normal_mode/the_end.txt  </span><br><span class="line">```txt  </span><br><span class="line">The end is nigh  </span><br><span class="line">```  </span><br><span class="line">`daw` / `db` -- `x` / `b` -- `dw`  </span><br><span class="line">```txt  </span><br><span class="line">The end is nigh  </span><br><span class="line">```  </span><br><span class="line">### 技巧10 用次数做简单的算术运算  </span><br><span class="line">  </span><br><span class="line">	&lt;C-a&gt; 命令对数字执行加操作  </span><br><span class="line">	&lt;C-x&gt; 命令对数字执行减操作  </span><br><span class="line">	cW    命令修改第一个单词  </span><br><span class="line">  </span><br><span class="line">```css  </span><br><span class="line">.blog, .news &#123; background-image: url(/sprite.png); &#125;  </span><br><span class="line">.blog &#123; background-position: 0px 0px &#125;  </span><br><span class="line">```  </span><br><span class="line">`yyp` -- `cW`.news` -- `180&lt;C-x&gt;`  </span><br><span class="line">```css  </span><br><span class="line">.blog, .news &#123; background-image: url(/sprite.png); &#125;  </span><br><span class="line">.blog &#123; background-position: 0px 0px &#125;  </span><br><span class="line">.news &#123; background-position: -180px 0px &#125;  </span><br><span class="line">```  </span><br><span class="line">  </span><br><span class="line">&gt; Vim默认把以 0 开头的数字解释为八进制值，而不是十进制。`set nrformats=`加入vimrc里会让Vim把所有数字都当成十进制。  </span><br><span class="line">  </span><br><span class="line">### 技巧11 能够重复，就别用次数  </span><br><span class="line">	  </span><br><span class="line">	d2w 删除两个单词  </span><br><span class="line">	2dw 执行两次删除单词操作  </span><br><span class="line">  </span><br><span class="line">```txt  </span><br><span class="line">Delete more than one word  </span><br><span class="line">```  </span><br><span class="line">`dw` -- `dw` / `d2w` / `2dw`  </span><br><span class="line">```txt  </span><br><span class="line">Delete one word  </span><br><span class="line">```  </span><br><span class="line">  </span><br><span class="line">### 技巧12 双剑合璧，天下无敌  </span><br><span class="line">  </span><br><span class="line">#### Vim的操作符命令  </span><br><span class="line">| 命令 | 用途 |  </span><br><span class="line">| :--- | :--- |  </span><br><span class="line">| c | 修改 |  </span><br><span class="line">| d | 删除 |  </span><br><span class="line">| y | 复制到寄存器 |  </span><br><span class="line">| g~ | 反转大小写 |  </span><br><span class="line">| gu | 转换为小写 |  </span><br><span class="line">| gU | 转换为大写 |  </span><br><span class="line">| &gt; | 增加缩进 |  </span><br><span class="line">| &lt; | 减小缩进 |  </span><br><span class="line">| = | 自动缩进 |  </span><br><span class="line">| ! | 使用外部程序过滤&#123;motion&#125;所跨越的行  </span><br><span class="line">  </span><br><span class="line">#### 操作符 + 动作命令 = 操作  </span><br><span class="line">  </span><br><span class="line">	d&#123;motion&#125; 命令可以对一个字符（dl）、一个完整单词（daw）或一整个段落（dap）进行操作，它的作用范围由动作命令决定。  </span><br><span class="line">	g~、gu和gU 命令要用两次按键来调用，可把 g 当做一个前缀字符（或者称为命名空间），用以改变其后面的按键行为，这种形式可以扩充可用命令的数目。  </span><br><span class="line">	  </span><br><span class="line">#### 自定义操作符与已有动作命令协同工作  </span><br><span class="line">Tim Pope的**commentary.vim**插件为Vim所支持的编程语言增添了注释和取消注释的命令：  </span><br><span class="line">	  </span><br><span class="line">	\\ap 切换当前段落的注释状态  </span><br><span class="line">	\\G  把从当前行到文件结尾间的所有内容注释掉  </span><br><span class="line">	\\\  注释当前行  </span><br><span class="line">  </span><br><span class="line">&gt;**操作符待决模式**通常只持续不到一秒时间。举个例子，执行dw命令时，这一模式只在按d及w键之间的短暂时间间隔内存在。如果把Vim看成有限状态机，那么操作符待决模式就是一个只接受动作命令的状态。当操作符待决模式被激活时，可以按`&lt;Esc&gt;`中止该操作，返回到普通模式。  </span><br><span class="line">  </span><br><span class="line">## 第3章 插入模式  </span><br><span class="line">  </span><br><span class="line">### 技巧13 在插入模式中可即时更正错误  </span><br><span class="line">  </span><br><span class="line">&gt; 替换模式是插入模式的一种特例。自动补全是插入模式中才能使用的高级功能。  </span><br><span class="line">  </span><br><span class="line">在插入模式下，退格键会删除光标前的字符。除此外，还有一些组合键（不是Vim独有的）：    </span><br><span class="line">  </span><br><span class="line">| 按键操作 | 用途 |  </span><br><span class="line">| :------- | :--- |  </span><br><span class="line">| `&lt;C-h&gt;` | 删除前一个字符（同退格键）|  </span><br><span class="line">| `&lt;C-w&gt;` | 删除前一个单词 |  </span><br><span class="line">| `&lt;C-u&gt;` | 删至行首 |  </span><br><span class="line">  </span><br><span class="line">### 技巧14 返回普通模式  </span><br><span class="line">  </span><br><span class="line">`插入-普通模式`是普通模式的一个特例，它能让我们执行一次普通模式命令，以减少模式切换所带来的不畅。    </span><br><span class="line">  </span><br><span class="line">| 按键操作 | 用途 |  </span><br><span class="line">| :------- | :--- |  </span><br><span class="line">| `&lt;Esc&gt;` | 切换到普通模式 |  </span><br><span class="line">| `&lt;C-[&gt;` | 切换到普通模式 |  </span><br><span class="line">| `&lt;C-o&gt;` | 切换到插入-普通模式 |  </span><br><span class="line">  </span><br><span class="line">`zz`命令可以重绘屏幕，并把当前行显示在窗口正中。    </span><br><span class="line">  </span><br><span class="line">### 技巧15 不离开插入模式，粘贴寄存器中的文本  </span><br><span class="line">  </span><br><span class="line">`yt&#123;char&#125;`命令复制从当前光标位置开始到其后第一个&#123;char&#125;之间的所有字符到专用寄存器中。    </span><br><span class="line">`&lt;C-r&gt;&#123;register&#125;`命令粘贴指定寄存器中的文本到当前光标位置。    </span><br><span class="line">`&lt;C-r&gt;&lt;C-p&gt;&#123;register&#125;`命令与`&lt;C-r&gt;&#123;register&#125;`相比更智能一些，它会按原义插入寄存器中的文本，并修正任何不必要的缩进。    </span><br><span class="line">  </span><br><span class="line">eg insert_mode/practical_vim.txt    </span><br><span class="line">```txt  </span><br><span class="line">Practical Vim, by Drew Neil  </span><br><span class="line">Read Drew Neil&apos;s  </span><br><span class="line">```  </span><br><span class="line">`gg` --&gt; `yt,` --&gt; `jA ` --&gt; `&lt;C-r&gt;0`/`&lt;C-r&gt;&lt;C-p&gt;0` --&gt; `.&lt;Esc&gt;`  </span><br><span class="line">```txt  </span><br><span class="line">Practical Vim, by Drew Neil  </span><br><span class="line">Read Drew Neil&apos;s Practical Vim.  </span><br><span class="line">```  </span><br><span class="line">### 技巧16 随时随地做运算  </span><br><span class="line">  </span><br><span class="line">&gt; 表达式寄存器允许我们做一些运算，并把运算结果直接插入到文档中。    </span><br><span class="line">  </span><br><span class="line">`&lt;C-r&gt;=`在插入模式中，输入此命令可以访问表达式寄存器。输入表达式后敲一下&lt;CR&gt;，Vim就会把执行的结果插入到文档的当前位置了。     </span><br><span class="line">  </span><br><span class="line">eg insert_mode/back-of-envelope.txt  </span><br><span class="line">```txt  </span><br><span class="line">6 chairs, each costing $35, totals $  </span><br><span class="line">```  </span><br><span class="line">`A`	--&gt; `&lt;C-r&gt;=6*35&lt;CR&gt;`  </span><br><span class="line">```txt  </span><br><span class="line">6 chairs, each costing $35, totals $210  </span><br><span class="line">```  </span><br><span class="line">  </span><br><span class="line">### 技巧17 用字符编码插入非常用字符  </span><br><span class="line">  </span><br><span class="line">&gt; Vim可以用字符编码插入任意字符，以方便的输入键盘上找不到的符号。    </span><br><span class="line">  </span><br><span class="line">| 按键操作 | 用途 |  </span><br><span class="line">| :------- | :--- |  </span><br><span class="line">| `&lt;C-v&gt;&#123;code&#125;` | 在插入模式中插入&#123;code&#125;编码的字符。Vim所接受的字符编码共包含3为数字，例如&lt;C-v&gt;065将插入“A&quot;。|    </span><br><span class="line">|`&lt;C-v&gt;u&#123;unicode&#125;` | 在插入模式中unicode字符，用4为十六进制编码来输入这些字符。例如&lt;C-v&gt;u00bf将插入”¿“。|   </span><br><span class="line">|`&lt;C-v&gt;&#123;nondigit&#125;` | 按原义插入非数字字符。例如&lt;C-v&gt;&lt;Tab&gt;会插入制表符，无论是否启用了’expandtab&apos;选项。|     </span><br><span class="line">|`&lt;C-k&gt;&#123;char1&#125;&#123;char2&#125;` | 插入以二和字母&#123;char1&#125;&#123;char2&#125;表示的字符。例如&lt;C-k&gt;12将插入“½”。|  </span><br><span class="line">  </span><br><span class="line">`ga`命令分别以十进制和十六进制显示光标位置的字符编码。     </span><br><span class="line">  </span><br><span class="line">### 技巧18 用二合字母插入非常用字符  </span><br><span class="line">  </span><br><span class="line">&gt; 虽然Vim允许用数字编码插入任意字符，不过这既难记忆又难输入。用二合字母插入非常用字符，成对的字符更容易记忆一些。Vim的缺省二合字母集依从一定的惯例，`:h digraphs-default`文档对此进行了总结。   </span><br><span class="line">  </span><br><span class="line">`&lt;C-k&gt;&#123;char1&#125;&#123;char2&#125;`插入以二和字母&#123;char1&#125;&#123;char2&#125;表示的字符。例如&lt;C-k&gt;12将插入“½”、&lt;C-k&gt;?I将插入“¿”。     </span><br><span class="line">  </span><br><span class="line">### 技巧19 用替换模式替换已有文本  </span><br><span class="line">  </span><br><span class="line">&gt; 在替换模式中输入会替换文档中的已有文本，除此之外，该模式与插入模式完全相同。  </span><br><span class="line">  </span><br><span class="line">`R`命令可以由普通模式进入替换模式。等同于`&lt;Insert&gt;`键。    </span><br><span class="line">`gR`命令可以由普通模式进入虚拟替换模式。在虚拟替换模式下，它会把制表符当成一组空格进行处理。    </span><br><span class="line">`r&#123;char&#125;`命令进入单次版本的替换模式，允许覆盖一个字符后立即又回到普通模式。    </span><br><span class="line">`gr&#123;char&#125;`命令进入单次版本的虚拟替换模式，允许覆盖一个字符后立即又回到普通模式。    </span><br><span class="line">  </span><br><span class="line">eg inset_mode/replace.txt    </span><br><span class="line">```txt  </span><br><span class="line">Typing in Insert mode extends the line. But in Replace mode  </span><br><span class="line">the line length doesn&apos;t change.  </span><br><span class="line">```  </span><br><span class="line">`f.` --&gt; `R, b`  </span><br><span class="line">```txt  </span><br><span class="line">Typing in Insert mode extends the line, but in Replace mode  </span><br><span class="line">the line length doesn&apos;t change.  </span><br><span class="line">```  </span><br><span class="line">## 第4章 可视模式  </span><br><span class="line">  </span><br><span class="line">### 技巧20 深入理解可视模式  </span><br><span class="line">  </span><br><span class="line">&gt; 可视模式允许选中一个文本区域并在其上操作。很多普通模式命令，在可视模式中也完成同样的功能，但操作上有些细微变化。  </span><br><span class="line">  </span><br><span class="line">`v`命令切换到可视模式。  </span><br><span class="line">`iw`命令在可视模式中高亮选中单词。  </span><br><span class="line">  </span><br><span class="line">```txt  </span><br><span class="line">March  </span><br><span class="line">```  </span><br><span class="line">`v`--&gt;`iw`--&gt;`c`--&gt;April  </span><br><span class="line">```txt  </span><br><span class="line">April  </span><br><span class="line">```  </span><br><span class="line">&gt; `选择模式`下选中一段文本后，再输入任意可见字符时，这些选中的文本将会被删除。按`&lt;C-g&gt;`可在可视模式和选择模式间切换。  </span><br><span class="line">  </span><br><span class="line">### 技巧21 选择高亮区域  </span><br><span class="line">  </span><br><span class="line">Vim有3中可视模式，分别面向字符、行、列块。激活方式如下：  </span><br><span class="line">  </span><br><span class="line">| 命令 | 用途 |  </span><br><span class="line">| :--- | :--- |  </span><br><span class="line">| `v` | 激活面向字符的可视模式 |  </span><br><span class="line">| `V` | 激活面向行的可视模式 |  </span><br><span class="line">| `&lt;C-v&gt;` | 激活面向列块的可视模式 |  </span><br><span class="line">| `gv` | 重选上次的高亮选区 |  </span><br><span class="line">  </span><br><span class="line">在不同风格的可视模式间切换：  </span><br><span class="line">  </span><br><span class="line">| 按键操作 | 用途 |  </span><br><span class="line">| :------- | :--- |  </span><br><span class="line">| `&lt;Esc&gt;` / `&lt;C-[` | 回到普通模式 |  </span><br><span class="line">| `v` / `V` / `&lt;C-v&gt;` | 在可视模式和普通模式间切换 |  </span><br><span class="line">| `o` | 切换高亮选区的活动端 |  </span><br><span class="line">  </span><br><span class="line">### 技巧22 重复执行面向行的可视命令  </span><br><span class="line">  </span><br><span class="line">`&gt;`命令增加缩进，这个命令的正常工作一般需将&apos;shiftwidth&apos;和‘softtabstop&apos;的值设为4，并启用’expandtab‘选项。  </span><br><span class="line">  </span><br><span class="line">eg visual_mode/fibonacci-malformed.py  </span><br><span class="line">```python  </span><br><span class="line">def fib(n):  </span><br><span class="line">    a, b = 0, 1  </span><br><span class="line">    while a &lt; n:  </span><br><span class="line">print a,  </span><br><span class="line">a, b = b, a+b  </span><br><span class="line">fib(42)  </span><br><span class="line">```  </span><br><span class="line">`:set shiftwidth=4 softtabstop=4 expandtab`--&gt;`/print`--&gt;`Vj`--&gt;`&gt;.`  </span><br><span class="line">```python  </span><br><span class="line">def fib(n):  </span><br><span class="line">    a, b = 0, 1  </span><br><span class="line">    while a &lt; n:  </span><br><span class="line">        print a,  </span><br><span class="line">        a, b = b, a+b  </span><br><span class="line">fib(42)  </span><br><span class="line">```  </span><br><span class="line">  </span><br><span class="line">### 技巧23 只要可能，最好用操作符命令，而不是可视命令  </span><br><span class="line">  </span><br><span class="line">&gt; 可视模式有一个缺点：在这个模式下，`.`命令有时会有一些异常的表现。  </span><br><span class="line">  </span><br><span class="line">`it`命令是一种被称为文本对象的特殊动作命令，可高亮选中标签内部的内容（visuallly select inside the tag）。  </span><br><span class="line">`U`命令把选中的字符转换为大写。  </span><br><span class="line">  </span><br><span class="line">eg visual_mode/list-of-links.html  </span><br><span class="line">```html  </span><br><span class="line">&lt;a href=&quot;#&quot;&gt;one&lt;/a&gt;  </span><br><span class="line">&lt;a href=&quot;#&quot;&gt;two&lt;/a&gt;  </span><br><span class="line">&lt;a href=&quot;#&quot;&gt;three&lt;/a&gt;  </span><br><span class="line">```  </span><br><span class="line">可视命令：`v`--&gt;`it`--&gt;`U`--&gt;`j.`--&gt;`j.`  </span><br><span class="line">```html  </span><br><span class="line">&lt;a href=&quot;#&quot;&gt;ONE&lt;/a&gt;  </span><br><span class="line">&lt;a href=&quot;#&quot;&gt;TWO&lt;/a&gt;  </span><br><span class="line">&lt;a href=&quot;#&quot;&gt;THRee&lt;/a&gt;  </span><br><span class="line">```  </span><br><span class="line">普通模式下的操作符命令：`gUit`--&gt;`j.`--&gt;`j.`  </span><br><span class="line">```html  </span><br><span class="line">&lt;a href=&quot;#&quot;&gt;ONE&lt;/a&gt;  </span><br><span class="line">&lt;a href=&quot;#&quot;&gt;TWO&lt;/a&gt;  </span><br><span class="line">&lt;a href=&quot;#&quot;&gt;THREE&lt;/a&gt;  </span><br><span class="line">```  </span><br><span class="line">  </span><br><span class="line">### 技巧24 用面向列块的可视模式编辑表格内容  </span><br><span class="line">   </span><br><span class="line">`gv`命令重选上次的高亮选区。  </span><br><span class="line">`r`命令替换字符  </span><br><span class="line">  </span><br><span class="line">eg visual_mode/chapter-tabel.txt  </span><br><span class="line">```txt  </span><br><span class="line">Chapter            Page  </span><br><span class="line">Normal mode          15  </span><br><span class="line">Insert mode          31  </span><br><span class="line">Visual mode          44  </span><br><span class="line">```  </span><br><span class="line">`&lt;C-v&gt;3j`--&gt;`x...`--&gt;`gv`--&gt;`r|`  </span><br><span class="line">```txt  </span><br><span class="line">Chapter      |  Page  </span><br><span class="line">Normal mode  |    15  </span><br><span class="line">Insert mode  |    31  </span><br><span class="line">Visual mode  |    44  </span><br><span class="line">```  </span><br><span class="line">`yyp`--&gt;`Vr|`  </span><br><span class="line">```txt  </span><br><span class="line">Chapter      |  Page  </span><br><span class="line">--------------------  </span><br><span class="line">Normal mode  |    15  </span><br><span class="line">Insert mode  |    31  </span><br><span class="line">Visual mode  |    44  </span><br><span class="line">```  </span><br><span class="line">  </span><br><span class="line">### 技巧25 修改列文本  </span><br><span class="line">  </span><br><span class="line">`w` 下一个单词第一个字符  </span><br><span class="line">`e` 下一个单词最后一个字符  </span><br><span class="line">`b` 前一个单词第一个字符  </span><br><span class="line">`ge` 前一个单词最后一个字符  </span><br><span class="line">  </span><br><span class="line">eg visual_mode/sprite.css  </span><br><span class="line">```css  </span><br><span class="line">li.one   a&#123; background-image: url(&apos;/images/sprite.png&apos;); &#125;  </span><br><span class="line">li.two   a&#123; background-image: url(&apos;/images/sprite.png&apos;); &#125;  </span><br><span class="line">li.three a&#123; background-image: url(&apos;/images/sprite.png&apos;); &#125;  </span><br><span class="line">```  </span><br><span class="line">`&lt;C-v&gt;jje`--&gt;`c`--&gt;components--&gt;`&lt;Esc&gt;`  </span><br><span class="line">```css  </span><br><span class="line">li.one   a&#123; background-image: url(&apos;/components/sprite.png&apos;); &#125;  </span><br><span class="line">li.two   a&#123; background-image: url(&apos;/components/sprite.png&apos;); &#125;  </span><br><span class="line">li.three a&#123; background-image: url(&apos;/components/sprite.png&apos;); &#125;  </span><br><span class="line">```  </span><br><span class="line">  </span><br><span class="line">### 技巧26 在长短不一的高亮块后添加文本  </span><br><span class="line">  </span><br><span class="line">eg the_vim_way/2_foo_bar.js  </span><br><span class="line">```txt  </span><br><span class="line">var foo = 1  </span><br><span class="line">var bar = &apos;a&apos;  </span><br><span class="line">var foobar = foo + bar  </span><br><span class="line">```  </span><br><span class="line">`&lt;C-v&gt;jj$`--&gt;`A;`--&gt;`&lt;Esc&gt;`  </span><br><span class="line">```txt  </span><br><span class="line">var foo = 1;  </span><br><span class="line">var bar = &apos;a&apos;;  </span><br><span class="line">var foobar = foo + bar;  </span><br><span class="line">```  </span><br><span class="line">&gt; **Vim对&quot;i&quot;和&quot;a&quot;键的约定**：`i`、`a`、`I`和`A`都可以从普通模式切换到插入模式，但在可视模式以及操作符待决模式中，`i`和`a`沿用一个不同的约定，它们会被当作一个文本对象的组成部分。如果在可视模式里选中了一块区域，并且按’i‘没有进入插入模式，那么换用&apos;I&apos;试下。  </span><br><span class="line">  </span><br><span class="line">## 第5章 命令行模式  </span><br><span class="line">  </span><br><span class="line">### 技巧27 结识Vim的命令行模式  </span><br><span class="line">  </span><br><span class="line">&gt; 命令行模式回提示输入一条Ex命令、一个查找模式或者一个表达式。按下`:`键切换到命令行模式，`&lt;CR&gt;`键执行它。任意时刻按`&lt;Esc&gt;`键切换回普通模式。在普通模式下按`/`键调出查找提示符或者在插入模式下按`&lt;C-r&gt;=`访问表达式寄存器，命令行模式也会被激活。  </span><br><span class="line">  </span><br><span class="line">操作缓冲区文本的Ex命令：  </span><br><span class="line">  </span><br><span class="line">| 命令 | 用途 |  </span><br><span class="line">| :--- | :--- |  </span><br><span class="line">| :[range]delete [x] | 删除指定范围内的行[到寄存器x中] |  </span><br><span class="line">| :[range]yank [x] | 复制指定范围内的行[到寄存器x中] |  </span><br><span class="line">| :[line]put [x] | 在指定行后粘贴寄存器x中的内容 |  </span><br><span class="line">| :[range]copy &#123;address&#125; | 把指定范围内的行拷贝到&#123;address&#125;所指定的行之下 |  </span><br><span class="line">| :[range]move &#123;address&#125; | 把指定范围内的行移动到&#123;address&#125;所指定的行之下 |  </span><br><span class="line">| :[range]join | 连接指定范围内的行 |  </span><br><span class="line">| :[range]normal &#123;commands&#125; | 对指定范围内的每一行执行普通模式命令&#123;commands&#125; |  </span><br><span class="line">| :[range]substitute/&#123;pattern&#125;/&#123;string&#125;/[flags] | 把指定范围内出现&#123;pattern&#125;的地方替换为&#123;string&#125; |  </span><br><span class="line">| :[range]global/&#123;pattern&#125;/[cmd] | 对指定范围内匹配&#123;pattern&#125;的所有行，在其上执行Ex命令&#123;cmd&#125; |  </span><br><span class="line">  </span><br><span class="line">&gt; **Vim命令行模式中的特殊按键**：有些命令在插入模式和命令行模式中可以通用。例如，可以用`&lt;C-w&gt;`和`&lt;C-u&gt;`分别删除至上个单词的开头及行首，也可以用`&lt;C-v&gt;`或`&lt;C-k&gt;`来插入键盘上找不到的字符，还可以用`&lt;C-r&gt;&#123;register&#125;`命令把任意寄存器的内容插入到命令行。  </span><br><span class="line">  </span><br><span class="line">### 技巧28 在一行或多个连续行上执行命令  </span><br><span class="line">  </span><br><span class="line">`:print`命令在Vim命令行下方回显指定行的内容。  </span><br><span class="line">  </span><br><span class="line">eg ex_mode/practical-vim.html  </span><br><span class="line">```html  </span><br><span class="line">Line 1 &lt;!DOCTYPE html&gt;  </span><br><span class="line">     2 &lt;html&gt;  </span><br><span class="line">     3  &lt;head&gt;&lt;title&gt;Practical Vim&lt;/title&gt;&lt;/head&gt;  </span><br><span class="line">     4  &lt;body&gt;&lt;h1&gt;Practical Vim&lt;/h1&gt;&lt;/body&gt;  </span><br><span class="line">     5 &lt;/html&gt;  </span><br><span class="line">```  </span><br><span class="line">  </span><br><span class="line">用行号作为地址：  </span><br><span class="line">  </span><br><span class="line">	:1 跳到第1行  </span><br><span class="line">	:$ 跳到末尾行  </span><br><span class="line">	:3p 跳到第3行并回显此行内容  </span><br><span class="line">  </span><br><span class="line">用地址指定一个范围：  </span><br><span class="line">  </span><br><span class="line">	:2,5p 打印第2行到第5行之间的内容	  </span><br><span class="line">	:.,$p 打印当前行到末尾行之间的内容  </span><br><span class="line">	:%p 打印当前文件中的所有行  </span><br><span class="line">	:%s/Practical/Pragmatic 将当前文件每一行第一个&quot;Practical&quot;替换为&quot;Pragmatic&quot;  </span><br><span class="line">  </span><br><span class="line">用高亮选区指定范围：  </span><br><span class="line">  </span><br><span class="line">	:&apos;&lt;,&apos;&gt;p 回显上次的高亮选区所选中的内容（先选中选区后按 : 键回自动填充范围 &apos;&lt;,&apos;&gt;）	  </span><br><span class="line">  </span><br><span class="line">用模式指定范围：  </span><br><span class="line">	  </span><br><span class="line">	:/&lt;html&gt;/,/&lt;\/html&gt;/p 打印&lt;html&gt;和&lt;/html&gt;标签之间的内容	  </span><br><span class="line">  </span><br><span class="line">用偏移对地址进行修正：  </span><br><span class="line">  </span><br><span class="line">	:/&lt;html&gt;/+1,/&lt;\/html&gt;/-1p 打印&lt;html&gt;和&lt;/html&gt;标签之间的内容（不包括&lt;html&gt;和&lt;/html&gt;标签所在的行）	  </span><br><span class="line">  </span><br><span class="line">构建`Ex`命令的地址和范围的符号：  </span><br><span class="line">  </span><br><span class="line">| 符号 | 地址 |  </span><br><span class="line">| :--- | :--- |  </span><br><span class="line">| 1 | 文件的第一行 |  </span><br><span class="line">| $ | 文件的最后一行 |  </span><br><span class="line">| 0 | 虚拟行，位于文件第一行上方 |  </span><br><span class="line">| . | 光标所在行 |  </span><br><span class="line">| &apos;m | 包含位置标记 m 的行 |  </span><br><span class="line">| &apos;&lt; | 高亮选区的起始行 |  </span><br><span class="line">| &apos;&gt; | 高亮选区的结束行 |  </span><br><span class="line">| % | 整个文件（:1,$ 的简写形式） |  </span><br><span class="line">  </span><br><span class="line">### 技巧29 使用**&apos;:t&apos;**和**&apos;:m&apos;命令复制和移动行  </span><br><span class="line">  </span><br><span class="line">&gt; :copy命令（简写形式:t或者:co）可以复制一行或多行，而:move命令（简写为:m）可以移动一行或多行。  </span><br><span class="line">  </span><br><span class="line">eg ex_mode/shopping-list.todo  </span><br><span class="line">```txt  </span><br><span class="line">Line 1 Shopping list  </span><br><span class="line">     2     Hardware Store  </span><br><span class="line">     3         Buy new hammer  </span><br><span class="line">     4       Beauty Parlor  </span><br><span class="line">     5         Buy nail polish remover  </span><br><span class="line">     6         Buy nails  </span><br><span class="line">```  </span><br><span class="line">  </span><br><span class="line">`:t`命令的应用实例：  </span><br><span class="line">  </span><br><span class="line">| 命令 | 用途 |  </span><br><span class="line">| :--- | :--- |  </span><br><span class="line">| :6t. | 把第6行复制到当前行下方 |  </span><br><span class="line">| :t6 | 把当前行复制到第6行下方 |  </span><br><span class="line">| :t. | 为当前行创建一个副本（类似于普通模式下的yyp） |  </span><br><span class="line">| :t$ | 把当前行复制到文本结尾 |  </span><br><span class="line">| :&apos;&lt;,&apos;&gt;t0 | 把高亮选中的行复制到文件开头 |  </span><br><span class="line">  </span><br><span class="line">	&lt;C-o&gt; 命令在普通模式下可快速跳回原先的位置；  </span><br><span class="line">	&lt;C-r&gt; 命令在普通模式下可撤销`u`命令的回退效果；  </span><br><span class="line">	@: 命令重复上次的Ex命令。  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">### 技巧30 在指定范围上执行普通模式命令  </span><br><span class="line">  </span><br><span class="line">&gt; 用`:normal`命令可在一系列连续行上执行一条普通模式命令，此命令与`.`命令或宏组合使用时，可以轻松处理大量重复性任务。  </span><br><span class="line">  </span><br><span class="line">`:&apos;&lt;,&apos;&gt;noraml .`对高亮选区中的每一行执行普通模式下的`.`命令;    </span><br><span class="line">`:%normal A;`对整个文件每一行的结尾都添加一个分号；  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">示例：the_vim_way/2_foo_bar.js  </span><br><span class="line">```txt  </span><br><span class="line">var foo = 1  </span><br><span class="line">var bar = &apos;a&apos;  </span><br><span class="line">var foobar = foo + bar  </span><br><span class="line">var foobarbaz = foo + bar + baz  </span><br><span class="line">```  </span><br><span class="line">`A;&lt;Esc&gt;`--&gt;`jVjj`--&gt;`:&apos;&lt;,&apos;&gt;noraml.`  </span><br><span class="line">```txt  </span><br><span class="line">var foo = 1;  </span><br><span class="line">var bar = &apos;a&apos;;  </span><br><span class="line">var foobar = foo + bar;  </span><br><span class="line">var foobarbaz = foo + bar + baz;  </span><br><span class="line">```  </span><br><span class="line">  </span><br><span class="line">### 技巧31 重复上次的Ex命令  </span><br><span class="line">  </span><br><span class="line">&gt; `.`命令可以重复上次的普通模式命令。`@:`命令可以重复上次的Ex命令，在运行过一次`@:`后，后面就可以用`@@`命令来重复它。  </span><br><span class="line">  </span><br><span class="line">`:bn[ext]`命令可在遍历缓冲区列表时逐项正向移动；  </span><br><span class="line">`:bp[revious]`命令可在遍历缓冲区列表时逐项反向移动；  </span><br><span class="line">`&lt;C-o&gt;`命令回到跳转列表的上条记录；  </span><br><span class="line">  </span><br><span class="line">### 技巧32 自动补全Ex命令  </span><br><span class="line">  </span><br><span class="line">&gt; 如同在shell中一样，在命令行上也可以用`&lt;Tab&gt;`键自动补全命令，多次按`&lt;Tab&gt;`键会依次显示可用的补全。`&lt;C-d&gt;`命令会让Vim显示可用的补全列表。  </span><br><span class="line">  </span><br><span class="line">#### 在多个补全项间选择：  </span><br><span class="line">  </span><br><span class="line">如果Vim找到多个补全项，缺省情况下，首次按下 Tab 键时，Vim会用第一个补全项进行补全，以后每按一下 Tab 键，就会依次遍历剩余的补全项。  </span><br><span class="line">  </span><br><span class="line">调整&apos;wildmode&apos;选项可以自定义补全行为，如进行如下设置：  </span><br><span class="line">```vim  </span><br><span class="line">set wildmode=longest,list  </span><br><span class="line">```  </span><br><span class="line">  </span><br><span class="line">如果习惯用zsh提供的自动补全菜单，可以设置：  </span><br><span class="line">```vim  </span><br><span class="line">set wildmenu  </span><br><span class="line">set wildmode=full  </span><br><span class="line">```  </span><br><span class="line">当&apos;wildmenu&apos;选项被启用时，Vim会提供一个补全导航列表。按`&lt;Tab&gt;`、`&lt;C-n&gt;`或`&lt;Right&gt;`正向遍历其列表项，也可以用`&lt;S-Tab&gt;`、`&lt;C-p&gt;`或`&lt;Left&gt;`对其进行反遍历。  </span><br><span class="line">  </span><br><span class="line">### 技巧33 把当前单词插入到命令行  </span><br><span class="line">  </span><br><span class="line">&gt; 在Vim的命令行下，`&lt;C-r&gt;&lt;C-w&gt;`映射项回复制光标下的单词并把它插入到命令行中。  </span><br><span class="line">  </span><br><span class="line">eg ex_mode/loop.js  </span><br><span class="line">```javascript  </span><br><span class="line">var tally;  </span><br><span class="line">for (tally=1; tally &lt;= 10; tally++) &#123;  </span><br><span class="line">  // do something with tally  </span><br><span class="line">&#125;  </span><br><span class="line">```  </span><br><span class="line">  </span><br><span class="line">`&lt;C-r&gt;&lt;C-w&gt;` 用于插入光标下的单词；  </span><br><span class="line">`&lt;C-r&gt;&lt;C-a&gt;` 用于插入光标下的字串；  </span><br><span class="line">  </span><br><span class="line">### 技巧34 回溯历史命令  </span><br><span class="line">  </span><br><span class="line">&gt; Vim缺省会记录最后20条命令，可以修改&apos;history&apos;选项，以提高保存的上限。例如`set history=200`。由于命令历史不仅是为当前编辑会话记录的，这些历史即使在退出vim再重启之后依然存在，因此提高历史记录的数目非常有价值。  </span><br><span class="line">  </span><br><span class="line">`:help&lt;Up&gt;`对列表进行过滤，只有以‘help&apos;开头的历史Ex命令被填充到命令行上；  </span><br><span class="line">`/&lt;Up&gt;`回溯查找记录；  </span><br><span class="line">  </span><br><span class="line">&gt; **回溯历史命令时，避免使用光标键**：除了&lt;Up&gt;和&lt;Down&gt;键外，也可以用&lt;C-p&gt;和&lt;C-n&gt;组合键来反向或正向遍历命令历史，但是需把手移到小键盘区才能使用方向键，而组合键不会像&lt;Up&gt;和&lt;Down&gt;那样对历史命令进行过滤。通过创建下面的自定义映射项，可以结合二者的优点：  </span><br><span class="line">```vim  </span><br><span class="line">:cnoremap &lt;C-p&gt; &lt;Up&gt;  </span><br><span class="line">:cnoremap &lt;C-n&gt; &lt;Down&gt;  </span><br><span class="line">```  </span><br><span class="line">  </span><br><span class="line">#### 结识命令行窗口  </span><br><span class="line">  </span><br><span class="line">打开命令行窗口的几种方式：  </span><br><span class="line">  </span><br><span class="line">| 命令 | 动作 |  </span><br><span class="line">| :--- | :--- |  </span><br><span class="line">| `q/` | 打开查找命令历史的命令行窗口 |  </span><br><span class="line">| `q:` | 打开 Ex 命令历史的命令行窗口 |  </span><br><span class="line">| `&lt;C-f&gt;` | 从命令行模式切换到命令行窗口 |  </span><br><span class="line">  </span><br><span class="line">&gt; 当命令行窗口处于打开状态时，它会始终拥有焦点。这意味着，除非关闭命令行窗口，否则无法切换到其他窗口。可以执行`:q`命令或者按`&lt;CR&gt;`键关闭命令行窗口。  </span><br><span class="line">  </span><br><span class="line">### 技巧35 运行Shell命令  </span><br><span class="line">  </span><br><span class="line">&gt; 在终端Vim中运行Shell命令十分方便。如果是运行GVim，那么命令运行得也许没那么顺畅。  </span><br><span class="line">  </span><br><span class="line">#### 执行Shell中的程序  </span><br><span class="line">  </span><br><span class="line">`:!ls -al`在命令行模式中运行shell的`ls`命令（加一个叹号前缀）；  </span><br><span class="line">`:!ruby %`执行当前编辑的文件（符号%代表当前文件名，参加:h cmdline-special）；  </span><br><span class="line">`:shell`启动一个交互的shell会话（参加:h :shell）；  </span><br><span class="line">`exit`退出shell会话并返回Vim;  </span><br><span class="line">  </span><br><span class="line">&gt; `:!&#123;cmd&#125;`命令适用于执行一次性命令。`:shell`命令是Vim提供的一个功能，可以切换到一个交互shell中。但是，如果Vim自身是在终端中运行的话，那么也能直接访问终端内置的shell命令。假设正在bash shell中运行Vim，然后需要执行一些shell命令。可以先按`&lt;C-z&gt;`挂起Vim所属的进程，并把控制权交还给bash。此时Vim进程在后台处于挂起状态。运行`$jobs`可以查看当前的作业列表，在bash中，可以用fg命令唤醒一个被挂起的作业，把它移到前台，这会让Vim恢复成挂起前的状态。（Ctrl-z和fg命令比Vim所提供的:shell和exit命令更加方便快捷）  </span><br><span class="line">  </span><br><span class="line">`read !&#123;cmd&#125;`命令把&#123;cmd&#125;的标准输出重定向到缓冲区；  </span><br><span class="line">`write !&#123;cmd&#125;`命令把缓冲区内容作为指定&#123;cmd&#125;的标准输入（参见h :write_c）；  </span><br><span class="line">  </span><br><span class="line">#### 使用外部命令过滤缓冲区内容  </span><br><span class="line">  </span><br><span class="line">&gt; 当给定一个范围时，`:!&#123;cmd&#125;`命令就具有了不同的含义。由[range]所指定的行会传给&#123;cmd&#125;作为标准输入，然后又会用&#123;cmd&#125;的输出覆盖[range]内原本的内容。  </span><br><span class="line">  </span><br><span class="line">`sort -t&apos;,&apos; -k2` sort命令，-t参数指定以逗号分隔，-k2参数指定按第二个字段进行排序；  </span><br><span class="line">  </span><br><span class="line">eg ex_mode/emails.csv  </span><br><span class="line">```csv  </span><br><span class="line">first name,last name,email  </span><br><span class="line">john,smith,john@example.com  </span><br><span class="line">drew,neil,drew@vimcasts.org  </span><br><span class="line">jane,doe,jane@example.com  </span><br><span class="line">```  </span><br><span class="line">`/john`--&gt;`.,.+2!sort -t&apos;,&apos; -k2`  </span><br><span class="line">```csv  </span><br><span class="line">first name,last name,email  </span><br><span class="line">jane,doe,jane@example.com  </span><br><span class="line">drew,neil,drew@vimcasts.org  </span><br><span class="line">john,smith,john@example.com  </span><br><span class="line">```  </span><br><span class="line">  </span><br><span class="line">&gt; Vim提供了一种方便的快捷方式设置范围。例如，把光标移到第2行，然后执行`!G`，Vim就会打开命令行并把范围 `:.,$!`预置在命令行上。  </span><br><span class="line">  </span><br><span class="line">Vim中调用外部命令的方式：  </span><br><span class="line">  </span><br><span class="line">| 命令 | 用途 |  </span><br><span class="line">| :--- | :--- |  </span><br><span class="line">| `:shell` | 启动一个shell（输入exit返回vim） |  </span><br><span class="line">| `:!&#123;cmd&#125;` | 在shell中执行&#123;cmd&#125; |  </span><br><span class="line">| `:read !&#123;cmd&#125;` | 在shell中执行&#123;cmd&#125;，并把标准输出插入到光标下方 |  </span><br><span class="line">| `:[range]write !&#123;cmd&#125;` | 在shell中执行&#123;cmd&#125;，以[range]作为其标准输入 |  </span><br><span class="line">| `:[range]!&#123;filter&#125;` | 使用外部程序&#123;filter&#125;过滤指定的[range] |  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 第6章 管理多个文件  </span><br><span class="line">  </span><br><span class="line">### 技巧36 用缓冲区列表管理打开的文件  </span><br><span class="line">  </span><br><span class="line">&gt; 绝大多数Vim命令都用来操作缓冲区，不过也有一些命令针对文件进行操作，这当中包括`:write`、`:update`及`:saveas`命令。  </span><br><span class="line">  </span><br><span class="line">`:ls`命令会列出所有被载入到内存中的缓冲区的列表（%符号指明当前窗口中可见的缓冲区，#符号代表轮换文件，按`&lt;C-^&gt;`可在当前文件和轮换文件间快速切换）；  </span><br><span class="line">`:bnext`命令可以切换到列表中的下一个缓冲区；  </span><br><span class="line">`:bprevious`命令可以切换到列表中的上一个缓冲区；  </span><br><span class="line">`:bfirst`命令可以切换到列表中的开头；  </span><br><span class="line">`:blast`命令可以切换到列表中的结尾；  </span><br><span class="line">`:buffer N`命令切换到编号N的缓冲区；  </span><br><span class="line">`:buffer &#123;bufname&#125;`命令切换到&#123;bufname&#125;指定文件路径标识的缓冲区；  </span><br><span class="line">`:bufdo &#123;cmd&#125;`命令在所有缓冲区上执行Ex命令；  </span><br><span class="line">`:bdelete N1 N2 N3`命令删除编号为N1、N2和N3的缓冲区；  </span><br><span class="line">`:N,M bdelete`命令删除编号N~M之前的缓冲区；  </span><br><span class="line">  </span><br><span class="line">eg code/files  </span><br><span class="line">```txt  </span><br><span class="line">a.txt  </span><br><span class="line">b.txt  </span><br><span class="line">```  </span><br><span class="line">#### 创建快速遍历Vim列表的按键映射项  </span><br><span class="line">  </span><br><span class="line">用Tim Pope的unimpaired.vim插件中定义的映射项。  </span><br><span class="line">  </span><br><span class="line">```vim  </span><br><span class="line">nnoremap &lt;silent&gt; [b :bprevious&lt;CR&gt;  </span><br><span class="line">nnoremap &lt;silent&gt; ]b :bnext&lt;CR&gt;  </span><br><span class="line">nnoremap &lt;silent&gt; [B :bfirst&lt;CR&gt;  </span><br><span class="line">nnoremap &lt;silent&gt; ]B :blast&lt;CR&gt;  </span><br><span class="line">```  </span><br><span class="line">  </span><br><span class="line">### 技巧37 用参数列表将缓冲区分组  </span><br><span class="line">  </span><br><span class="line">&gt; 参数列表是vi的一个功能，缓冲区列表是vim的引入的增强功能。相比于Vi，Vim的参数列表功能被增强了，只是名字还沿用原来的而已。实际上，可在任意时刻改变参数列表的内容，`:args`列表并不一定反映启动Vim时所传的参数。  </span><br><span class="line">  </span><br><span class="line">`:args`命令显示参数列表；  </span><br><span class="line">`:args index.html app.js`以指定文件的方式填充参数列表；  </span><br><span class="line">`:args **/*.js`以通配符匹配文件的方式填充参数列表；  </span><br><span class="line">`:args `\`cat .chapters\`以反引号匹配文件内容的方式指定文件；  </span><br><span class="line">`:argdo &#123;cmd&#125;`命令在列表中的每个缓冲区上执行同一条命令；</span><br><span class="line"></span><br><span class="line">### 技巧38 管理隐藏缓冲区  </span><br><span class="line">  </span><br><span class="line">&gt; Vim对被修改过的缓冲区会给予特殊对待，以防止未加保存就意外退出。`:ls`命令查看时，带‘+’号的缓冲区就是被修改过了，保存后‘+’号会消失。如果一个被修改过的缓冲区不是活动缓冲区，会被标记为‘h’，表示它是一个隐藏缓冲区（hidden）。在Ex命令后加一个叹号会强制处理隐藏缓冲区。  </span><br><span class="line">  </span><br><span class="line">**在退出时，处理隐藏缓冲区的方式**  </span><br><span class="line">  </span><br><span class="line">| 命令 | 用途 |  </span><br><span class="line">| :--- | :--- |  </span><br><span class="line">| `:w[rite]` | 把缓冲区内容写入磁盘 |  </span><br><span class="line">| `:e[dit]!` | 把磁盘文件内容读入缓冲区 |  </span><br><span class="line">| `:qa[ll]!` | 关闭所有窗口，摈弃修改而无需警告 |  </span><br><span class="line">| `:wa[ll]!` | 把所有改变的缓冲区写入磁盘 |  </span><br><span class="line">  </span><br><span class="line">**运行‘:argdo’或‘:bufdo’前，启用‘hidden’设置**  </span><br><span class="line">  </span><br><span class="line">如果启用了Vim的‘hidden’选项的话，那么就可以不带末尾的叹号来执行`:next`、`:bnext`和`:cnext`命令了。如果活动区的内容发生了变化，Vim会在离开该缓冲区时自动将其设为隐藏。’hidden‘设置允许用一条‘:argdo’或‘:bufdo’命令就可以修改一组缓冲区。  </span><br><span class="line">  </span><br><span class="line">### 技巧39 将工作区切分成窗口  </span><br><span class="line">  </span><br><span class="line">&gt; Vim允许将工作区切分成若干窗口，在这些窗口里并排显示多个缓冲区。  </span><br><span class="line">  </span><br><span class="line">**创建分隔窗口**  </span><br><span class="line">  </span><br><span class="line">| 命令 | 用途 |  </span><br><span class="line">| :--- | :--- |  </span><br><span class="line">| `&lt;C-w&gt;s` | 水平切分当前窗口，新窗口仍显示当前缓冲区 |  </span><br><span class="line">| `&lt;C-w&gt;v` | 垂直切分当前窗口，新窗口仍显示当前缓冲区 |  </span><br><span class="line">| `:sp[lit] &#123;file&#125;` | 水平切分当前窗口，并在新窗口中载入&#123;file&#125; |  </span><br><span class="line">| `:vsp[lit] &#123;file&#125;` | 垂直切分当前窗口，并在新窗口中载入&#123;file&#125; |  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">**在窗口间切换** </span><br><span class="line"></span><br><span class="line">| 命令 | 用途 |  </span><br><span class="line">| :--- | :--- |  </span><br><span class="line">| `&lt;C-w&gt;w`或`&lt;C-w&gt;&lt;C-w&gt;` | 在窗口间循环切换 |  </span><br><span class="line">| `&lt;C-w&gt;h` | 切换到左边的窗口 |  </span><br><span class="line">| `&lt;C-w&gt;j` | 切换到下边的窗口 |  </span><br><span class="line">| `&lt;C-w&gt;k` | 切换到上边的窗口 |  </span><br><span class="line">| `&lt;C-w&gt;l` | 切换到右边的窗口 |  </span><br><span class="line"></span><br><span class="line">**关闭窗口**</span><br><span class="line"></span><br><span class="line">| Ex命令 | 普通模式命令 | 用途 |</span><br><span class="line">| :----- | :----------  | :--- |</span><br><span class="line">| `:clo[se]` | `&lt;C-w&gt;c` | 关闭活动窗口 |</span><br><span class="line">| `:on[ly]` | `&lt;C-w&gt;o` | 只保留活动窗口，关闭其他所有窗口 |</span><br><span class="line"></span><br><span class="line">**改变窗口大小及重新排列窗口**</span><br><span class="line"></span><br><span class="line">| 命令 | 用途 |  </span><br><span class="line">| :--- | :--- |  </span><br><span class="line">| `&lt;C-w&gt;=` | 使所有窗口等高、等宽 |  </span><br><span class="line">| `&lt;C-w&gt;_` | 最大化活动窗口的高度 |  </span><br><span class="line">| `&lt;C-w&gt;\|` | 最大化活动窗口的宽度 |  </span><br><span class="line">| `[N]&lt;C-w&gt;_` | 把活动窗口的高度设为[N]行 |  </span><br><span class="line">| `[N]&lt;C-w&gt;\|` | 把活动窗口的宽度设为[N]行 |  </span><br><span class="line"></span><br><span class="line">### 技巧40 用标签页将窗口分组  </span><br><span class="line">  </span><br><span class="line">&gt; Vim的标签页接口和其他许多文本编辑器不同，在Vim里，可以用标签页把窗口组织到一系列工作区里。  </span><br><span class="line">  </span><br><span class="line">**打开及关闭标签页**  </span><br><span class="line">  </span><br><span class="line">| 命令 | 用途 |  </span><br><span class="line">| :--- | :--- |  </span><br><span class="line">| `:tabe[dit] &#123;filename&#125;` | 在新标签页中打开&#123;filename&#125; |  </span><br><span class="line">| `&lt;C-w&gt;T` | 把当前窗口移动一个新标签页 |  </span><br><span class="line">| `:tabc[lose]` | 关闭当前标签页及其中的所有窗口 |  </span><br><span class="line">| `:tabo[nly]` | 只保留活动标签页，关闭所有其他标签页 |  </span><br><span class="line">  </span><br><span class="line">**在标签页间切换**  </span><br><span class="line">   </span><br><span class="line">| Ex命令 | 普通模式命令 | 用途 |  </span><br><span class="line">| :----  | :-----       | :--- |  </span><br><span class="line">| `tabn[ext] &#123;N&#125;` | `&#123;N&#125;gt` | 切换到编号为&#123;N&#125;的标签页 |  </span><br><span class="line">| `tabn[ext]` | `gt` | 切换到下一个标签页 |  </span><br><span class="line">| `tabp[revious]` | `gT` | 切换到上一个标签页 |  </span><br><span class="line">  </span><br><span class="line">**重排标签页**  </span><br><span class="line">  </span><br><span class="line">`:tabmove [N]`命令可以重新排列标签页。当[N]为0时，当前标签页会被移到开头；如果省略了[N]，当前标签页会被移到结尾。  </span><br><span class="line"></span><br><span class="line">## 第7章 打开及保存文件  </span><br><span class="line">  </span><br><span class="line">### 技巧41 用`:edit`命令打开文件  </span><br><span class="line">  </span><br><span class="line">`:pwd`打印当前窗口的工作目录；  </span><br><span class="line">`:edit &#123;files&#125;`命令打开&#123;files&#125;路径指定的文件；  </span><br><span class="line">`:edit %&lt;Tab&gt;`命令打开当前文件的完整文件路径；  </span><br><span class="line">`:edit %:h&lt;Tab&gt;`命令打开当前文件所在目录的路径；  </span><br><span class="line">  </span><br><span class="line">**轻松展开当前文件所在的目录**  </span><br><span class="line">  </span><br><span class="line">在vimrc中添加：  </span><br><span class="line">```vim  </span><br><span class="line">cnoremap &lt;expr&gt; %% getcmdtype( ) == &apos;:&apos; ? expand(&apos;%:h&apos;).&apos;/&apos; : &apos;%%&apos;  </span><br><span class="line">```  </span><br><span class="line">现在，当在Vim的命令行提示符后输入%%时，它就会被自动展开为活动缓冲区所在目录的路径，就像输入了`%:h&lt;Tab&gt;`一样。  </span><br><span class="line">  </span><br><span class="line">### 技巧42 使用`:find`打开文件  </span><br><span class="line">  </span><br><span class="line">&gt; `:find`命令允许在配置了’path‘选项后，通过文件名打开一个文件。  </span><br><span class="line">  </span><br><span class="line">**配置’path‘选项**  </span><br><span class="line">  </span><br><span class="line">```vim  </span><br><span class="line">set path+=app/**  </span><br><span class="line">```  </span><br><span class="line">```**```通配符会匹配app/目录下的所有子目录。  </span><br><span class="line">  </span><br><span class="line">**使用rails.vim进行智能路径管理**  </span><br><span class="line">  </span><br><span class="line">Tim Pope的rails.vim插件会自动配置’path‘选项，使之包含Rails工程中所有约定俗成的目录。  </span><br><span class="line">  </span><br><span class="line">`:find Main.js&lt;Tab&gt;`输入文件Main.js后，按一下&lt;Tab&gt;键，Vim就会在命令行上展开第一个匹配文件的完整文件路径。  </span><br><span class="line">  </span><br><span class="line">### 技巧43 使用`netrw`管理文件系统  </span><br><span class="line">  </span><br><span class="line">&gt; netrw插件是vim的标配插件。  </span><br><span class="line">  </span><br><span class="line">**Vim配置为可加载插件**  </span><br><span class="line">```vim  </span><br><span class="line">set nocompatible  </span><br><span class="line">filetype plugin on  </span><br><span class="line">```  </span><br><span class="line">   </span><br><span class="line">**打开文件管理器**  </span><br><span class="line">  </span><br><span class="line">| Ex命令 | 缩写 | 用途 |  </span><br><span class="line">| :---   | :--- | :--- |  </span><br><span class="line">| `:edit .` | `:e.` | 打开文件管理器，并显示当前工作目录 |   </span><br><span class="line">| `:Explore` | `:E` | 打开文件管理器，并显示活动缓冲区所在的目录 |   </span><br><span class="line">| `:Sexplore` | - | 在一个水平切分窗口里打开文件管理器，并显示活动缓冲区所在的目录 |   </span><br><span class="line">| `:Vexplore` | - | 在一个垂直切分窗口里打开文件管理器，并显示活动缓冲区所在的目录 |   </span><br><span class="line">  </span><br><span class="line">&gt; Vim的窗口可以看成有两种模式：一种针对文件，一种针对目录。目录里按&lt;CR&gt;键可以将文件载入缓存区，或者按&lt;C-^&gt;切换回最后编辑的文件。  </span><br><span class="line">  </span><br><span class="line">### 技巧44 把文件保存到不存在的目录中  </span><br><span class="line">  </span><br><span class="line">`&lt;C-g&gt;`命令用于显示当前文件的文件名及状态；  </span><br><span class="line">`:!mkdir -p %:h`调用外部的mkdir命令，-p参数使之创建任何不存在的中间目录；  </span><br><span class="line">  </span><br><span class="line">### 技巧45 以超级用户权限保存文件  </span><br><span class="line">  </span><br><span class="line">`:write !sudo tee % &gt; /dev/null`先是write将缓存区的内容作为标准输入传给以sudo权限运行的tee进程，然后有tee将标准输入内容写入到当前文件中。之后，Vim会检测到该文件已经被一个外部程序修改，提示保留缓存区还是载入磁盘上的文件，在本例中，文件和缓冲区的内容刚好时完全一致的。  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 第8章 用动作命令在文档中移动</span><br><span class="line"></span><br><span class="line">### 技巧46 让手指保持在本位行上</span><br><span class="line"></span><br><span class="line">**戒掉使用光标键的习惯**</span><br><span class="line"></span><br><span class="line">在vimrc里添加如下几行，可以将光标键映射为什么都不做。</span><br><span class="line">```vim</span><br><span class="line">noremap &lt;Up&gt; &lt;Nop&gt;</span><br><span class="line">noremap &lt;Down&gt; &lt;Nop&gt;</span><br><span class="line">noremap &lt;Left&gt; &lt;Nop&gt;</span><br><span class="line">noremap &lt;Right&gt; &lt;Nop&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="技巧47-区分实际行与屏幕行"><a href="#技巧47-区分实际行与屏幕行" class="headerlink" title="技巧47 区分实际行与屏幕行"></a>技巧47 区分实际行与屏幕行</h3><blockquote>
+<p><code>j</code>、<code>k</code>、<code>0</code>、<code>^</code>和<code>$</code>都用于操作实际行，而如果在这些键前加上<code>g</code>前缀的话，就会让vim对屏幕行进行操作。</p>
+</blockquote>
+<h3 id="技巧48-基于单词移动"><a href="#技巧48-基于单词移动" class="headerlink" title="技巧48 基于单词移动"></a>技巧48 基于单词移动</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">光标动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>w</code></td>
+<td style="text-align:left">正向移动到下一单词的开头</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>b</code></td>
+<td style="text-align:left">反向移动到当前/上一单词的开头</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>e</code></td>
+<td style="text-align:left">正向移动到当前/上一单词的结尾</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>ge</code></td>
+<td style="text-align:left">反向移动到上一单词的结尾</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>每一个面向单词（word）的动作命令，都有一个面向字串（WORD）的命令与之对应，这当中包括<code>W</code>、<code>B</code>、<code>E</code>和<code>gE</code>。</p>
+</blockquote>
+<h3 id="技巧49-对字符进行查找"><a href="#技巧49-对字符进行查找" class="headerlink" title="技巧49 对字符进行查找"></a>技巧49 对字符进行查找</h3><p><strong>利用f{char}在行内进行快速移动</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>f{char}</code></td>
+<td style="text-align:left">正向移动到下一个{char}所在之处</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>F{char}</code></td>
+<td style="text-align:left">反向移动到上一个{char}所在之处</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>t{char}</code></td>
+<td style="text-align:left">正向移动到下一个{char}所在之处的前一个字符上</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>T{char}</code></td>
+<td style="text-align:left">反向移动到上一个{char}所在之处的后一个字符上</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>;</code></td>
+<td style="text-align:left">重复上次的字符查找命令</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>,</code></td>
+<td style="text-align:left">反转方向查找上次的字符查找命令</td>
+</tr>
+</tbody>
+</table>
+<h3 id="技巧50-通过查找进行移动"><a href="#技巧50-通过查找进行移动" class="headerlink" title="技巧50 通过查找进行移动"></a>技巧50 通过查找进行移动</h3><blockquote>
+<p><code>/</code>查找命令可以快速的进行跳转，跳转的距离可以很近，也可以很远。查找命令不仅限于在普通模式下使用，也可以在可视模式及操作符待决模式中使用，实际上，学会把操作符和查找动作结合在一起使用，是一个很大的进步。</p>
+</blockquote>
+<h3 id="技巧51-用精确的文本对象选择选区"><a href="#技巧51-用精确的文本对象选择选区" class="headerlink" title="技巧51 用精确的文本对象选择选区"></a>技巧51 用精确的文本对象选择选区</h3><blockquote>
+<p>文本对象由两个字符组成，第一个字符永远是<code>i</code>或是<code>a</code>。一般以<code>i</code>开头的文本对象会选择分隔符内部的文本，而以<code>a</code>开头的文本对象则会选择包括分隔符在内的整个文本。</p>
+</blockquote>
+<p><strong>Vim内置的操作分隔符的部分文本对象</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">文本对象</th>
+<th style="text-align:left">选择区域</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>a)</code>或<code>ab</code></td>
+<td style="text-align:left">一对圆括号(parentheses)</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>a}</code>或<code>aB</code></td>
+<td style="text-align:left">一对花括号{braces}</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>a]</code></td>
+<td style="text-align:left">一对方括号[brackets]</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>a&gt;</code></td>
+<td style="text-align:left">一对尖括号<angle brackets=""></angle></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>a&#39;</code></td>
+<td style="text-align:left">一对单引号’single quotes’</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>a&quot;</code></td>
+<td style="text-align:left">一对双引号”double quotes”</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>a`</code></td>
+<td style="text-align:left">一对反引号`backticks`</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>at</code></td>
+<td style="text-align:left">一对XML标签<xml>tags</xml></td>
+</tr>
+</tbody>
+</table>
+<h3 id="技巧52-删除周边，修改内部"><a href="#技巧52-删除周边，修改内部" class="headerlink" title="技巧52 删除周边，修改内部"></a>技巧52 删除周边，修改内部</h3><p><strong>Vim内置的操作文本块的文本对象</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">文本对象</th>
+<th style="text-align:left">选择范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>iw</code></td>
+<td style="text-align:left">当前单词</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>iW</code></td>
+<td style="text-align:left">当前字串</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>is</code></td>
+<td style="text-align:left">当前句子</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>ip</code></td>
+<td style="text-align:left">当前段落</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>aw</code></td>
+<td style="text-align:left">当前单词及一个空格</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>aW</code></td>
+<td style="text-align:left">当前字串及一个空格</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>as</code></td>
+<td style="text-align:left">当前句子及一个空格</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>ap</code></td>
+<td style="text-align:left">当前段落及一个空格</td>
+</tr>
+</tbody>
+</table>
+<h3 id="技巧53-设置位置标记，以便快速跳回"><a href="#技巧53-设置位置标记，以便快速跳回" class="headerlink" title="技巧53 设置位置标记，以便快速跳回"></a>技巧53 设置位置标记，以便快速跳回</h3><blockquote>
+<p><code>m{a-zA-Z}</code>命令会用选定的字母标记当前光标所在位置，小写位置标记只在每个缓冲区里局部可见，而大写位置标记则全局可见。Vim提供了两条普通模式命令用于跳转到一个位置标记上：<code>`{mark}</code>命令把光标移动到设置此位置标记时光标所在之处；<code>&#39;{mark}</code>命令跳到位置标记所在行。</p>
+</blockquote>
+<p><strong>Vim自动位置标记</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">位置标记</th>
+<th style="text-align:left">跳转到</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><figure class="highlight plain"><figcaption><span>``` | 当前文件中上次跳转动作之前的位置 |</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">| `` `. `` | 上次修改的地方 |</span><br><span class="line">| `` `^ `` | 上次插入的地方 |</span><br><span class="line">| `` `[ `` | 上次修改或复制的起始位置 |</span><br><span class="line">| `` `] `` | 上次修改或复制的结束位置 |</span><br><span class="line">| `` `&lt; `` | 上次高亮选区的起始位置 |</span><br><span class="line">| `` `&gt; `` | 上次高亮选区的结束位置 |</span><br><span class="line"></span><br><span class="line">### 技巧54 在匹配括号间跳转</span><br><span class="line"></span><br><span class="line">&gt; `%`命令允许在一组开、闭括号间跳转，它可作用于()、&#123;&#125;以及[]。在激活了matchit.vim插件后，也可用于成对的XML标签。</span><br><span class="line"></span><br><span class="line">**在配对的关键字间跳转**</span><br><span class="line"></span><br><span class="line">matchit.vim插件随vim一起发布，但它缺省并未使能。下面的vimrc将使Vim在启动时自动加载matchit插件：</span><br><span class="line"></span><br><span class="line">```vim</span><br><span class="line">set nocompatible</span><br><span class="line">filetype plugin on</span><br><span class="line">runtime macros/matchit.vim</span><br></pre></td></tr></table></figure></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Surround.vim插件</strong></p>
+<p>此插件可以很容易地给选中的文本加分隔符。</p>
+<h2 id="第9章-在文件间跳转"><a href="#第9章-在文件间跳转" class="headerlink" title="第9章 在文件间跳转"></a>第9章 在文件间跳转</h2><h3 id="技巧55-遍历跳转列表"><a href="#技巧55-遍历跳转列表" class="headerlink" title="技巧55 遍历跳转列表"></a>技巧55 遍历跳转列表</h3><blockquote>
+<p>Vim为每个单独的窗口都维护一份跳转列表，<code>&lt;C-o&gt;</code>和<code>&lt;C-i&gt;</code>可以在当前活动窗口的跳转列表内进行后退和前进跳转。</p>
+</blockquote>
+<p><code>:jumps</code>查看跳转列表；</p>
+<p><strong>一些跳转动作</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>[count]G</code></td>
+<td style="text-align:left">跳转到指定的行号</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>/pattern&lt;CR&gt;/?pattern&lt;CR&gt;/n/N</code></td>
+<td style="text-align:left">跳转到下一个/上一个模式出现之处</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>%</code></td>
+<td style="text-align:left">跳转到匹配的括号所在之处</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>(/)</code></td>
+<td style="text-align:left">跳转到上一句/下一句的开头</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>{/}</code></td>
+<td style="text-align:left">跳转到上一段/下一段的开头</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>H/M/L</code></td>
+<td style="text-align:left">跳到屏幕最上方/正中间/最下方</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>gf</code></td>
+<td style="text-align:left">跳转到光标下的文件名</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&lt;C-]&gt;</code></td>
+<td style="text-align:left">跳转到光标下关键字的定义之处</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&#39;{mark}/`{mark}</code></td>
+<td style="text-align:left">跳转到一个位置标记</td>
+</tr>
+</tbody>
+</table>
+<h3 id="技巧56-遍历改变列表"><a href="#技巧56-遍历改变列表" class="headerlink" title="技巧56 遍历改变列表"></a>技巧56 遍历改变列表</h3><blockquote>
+<p>Vim为每个单独缓冲区维护一个改变列表，可以用<code>g;</code>和<code>g,</code>命令反向或正向遍历改变列表。</p>
+</blockquote>
+<p><code>:changes</code>查看改变列表；</p>
+<h3 id="技巧57-跳转到光标下的文件"><a href="#技巧57-跳转到光标下的文件" class="headerlink" title="技巧57 跳转到光标下的文件"></a>技巧57 跳转到光标下的文件</h3><blockquote>
+<p>Vim发布时附带一个Ruby文件类型插件，此插件会配置‘suffixesadd’和‘path’选项后，然后vim就可以用gf命令跳转到光标下的文件了。</p>
+</blockquote>
+<p><strong>指定文件的扩展名</strong></p>
+<p>‘suffixesadd’选项指定一个或多个文件扩展名。例如<code>:set suffixesadd+=.rb</code>增加.rb扩展名。</p>
+<p><strong>指定要搜寻的目录</strong></p>
+<p><code>set path?</code>可以查看‘path’选项的值。</p>
+<h2 id="第10章-复制和粘贴"><a href="#第10章-复制和粘贴" class="headerlink" title="第10章 复制和粘贴"></a>第10章 复制和粘贴</h2><h3 id="技巧59-用寄存器实现删除、复制和粘贴操作"><a href="#技巧59-用寄存器实现删除、复制和粘贴操作" class="headerlink" title="技巧59 用寄存器实现删除、复制和粘贴操作"></a>技巧59 用寄存器实现删除、复制和粘贴操作</h3><blockquote>
+<p>剪切（cut)、复制（copy）和粘贴（paste）是众所周知的术语。Vim也提供这些功能，只不过是另外的术语delete、yank和put。put和粘贴操作完全相同，yank等同于复制，由于历史原因，当时c命令已经被用于修改（change）操作了，因此vi的作者们被迫选择了另一个名字yank。delete与标准剪切操作一致。</p>
+</blockquote>
+<p><code>reg &quot;&quot;</code>查看无名寄存器中的内容；</p>
+<p><strong>无名寄存器（””）</strong></p>
+<p>Vim缺省会使用无名寄存器，用两个双引号表示。例如<code>&quot;&quot;p</code>与<code>p</code>完全等同。</p>
+<p><strong>复制专用寄存器（”0）</strong></p>
+<p>当使用<code>y{motion}</code>命令时，要复制的文本不仅会被拷贝到无名寄存器中，而且也被拷贝到了复制专用寄存器中，后者可以用<code>&quot;0</code>表示。</p>
+<p><strong>有名寄存器（”a-“z）</strong></p>
+<p>Vim提供了一组以26个英文字母命名的有名寄存器。</p>
+<p><strong>黑洞寄存器（”_）</strong></p>
+<p>用<code>&quot;_</code>引用。例如<code>&quot;_d{motion}</code>命令将删除文本且不保存任何副本。</p>
+<p><strong>系统剪贴板（<code>&quot;+</code>）和选择专用寄存器（<code>&quot;*</code>）</strong></p>
+<p>如果在外部程序中用剪切或复制命令获取了文本，就可以通过<code>&quot;+p</code>命令（或在插入模式中用<code>&lt;C-r&gt;+</code>）将其粘贴到Vim内部。相反地，如果在Vim的复制和删除命令之前加入<code>&quot;+</code>，相应的文本将被捕获至系统剪贴板。</p>
+<p>X11视窗系统支持另一种主剪贴板，它保存上次被高亮选中的文本，可以用鼠标中键把它们粘贴出来。Vim的<code>&quot;*</code>寄存器对应主剪贴板。</p>
+<p><strong>表达式寄存器（”=）</strong></p>
+<p>当从表达式寄存器获取内容时，vim将跳到命令行模式并显示提示符“=”，这时可以输入一段Vim脚步并按<cr>执行它。</cr></p>
+<p><strong>其他寄存器</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">寄存器</th>
+<th style="text-align:left">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>&quot;%</code></td>
+<td style="text-align:left">当前文件名</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&quot;#</code></td>
+<td style="text-align:left">轮换文件名</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&quot;.</code></td>
+<td style="text-align:left">上次插入的文本</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&quot;:</code></td>
+<td style="text-align:left">上次执行的Ex命令</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&quot;/</code></td>
+<td style="text-align:left">上次查找的模式</td>
+</tr>
+</tbody>
+</table>
+<h2 id="第11章-宏"><a href="#第11章-宏" class="headerlink" title="第11章 宏"></a>第11章 宏</h2><h3 id="技巧64-宏的读取和执行"><a href="#技巧64-宏的读取和执行" class="headerlink" title="技巧64 宏的读取和执行"></a>技巧64 宏的读取和执行</h3><blockquote>
+<p><code>q{register}</code>将宏录制到寄存器{register}中，<code>q</code>停止宏的录制。可以用<code>@{register}</code>命令执行指定寄存器的内容，用可以用<code>@@</code>来重复最近调用过的宏。  </p>
+</blockquote>
+<h2 id="第12章-按模式匹配及按原义匹配"><a href="#第12章-按模式匹配及按原义匹配" class="headerlink" title="第12章 按模式匹配及按原义匹配"></a>第12章 按模式匹配及按原义匹配</h2><h3 id="技巧72-调整查找模式的大小写敏感性"><a href="#技巧72-调整查找模式的大小写敏感性" class="headerlink" title="技巧72 调整查找模式的大小写敏感性"></a>技巧72 调整查找模式的大小写敏感性</h3><p><strong>全局设置大小写敏感性</strong>  </p>
+<p>启动‘ignorecase’设置后，vim的查找模式将不区分大小写。  </p>
+<p><strong>每次查找时设置大小写敏感性</strong>  </p>
+<p>通过使用元字符<code>\c</code>（不区分）与<code>\C</code>（区分），可以覆盖Vim缺省的大小写敏感性设置。这两个字符可以出现在模式的任意位置。  </p>
+<p><strong>启用更智能的大小写敏感性设置</strong>  </p>
+<p>启动‘smartcase’选项后，只要在查找模式中输入了大写字母，‘ignorecase’设置就不再生效了。  </p>
+<h3 id="技巧73-按正则表达式查找时，使用-v模式开关"><a href="#技巧73-按正则表达式查找时，使用-v模式开关" class="headerlink" title="技巧73 按正则表达式查找时，使用\v模式开关"></a>技巧73 按正则表达式查找时，使用<code>\v</code>模式开关</h3><blockquote>
+<p>Vim缺省使用magic搜索模式，其正则表达式语法更接近POSIX，magic搜索模式旨在让构造正则表达式变得容易，但是却半途而废，导致对于哪些字符需要转义的规则制定得比较混乱。使用<code>\v</code>模式开关将激活very maigc搜索模式，即假定除<code>_</code>、大小写字母以及数字0-9之外的所有字符都具有特殊含义，使得vim的正则表达式引擎表现得更像是perl、python所为。  </p>
+</blockquote>
+<h3 id="技巧74-按原义查找文本时，使用-V原义开关"><a href="#技巧74-按原义查找文本时，使用-V原义开关" class="headerlink" title="技巧74 按原义查找文本时，使用\V原义开关"></a>技巧74 按原义查找文本时，使用<code>\V</code>原义开关</h3><p>在正则表达式中使用的特殊字符，在按模式查找时用起来很顺手，但如果我们想按原义查找文本时，它们就变成了阻碍。使用 very nomagic 原义开关，可以消除附加在 <code>.</code>、<code>*</code>以及<code>?</code>等大多数字符上的特殊含义。   </p>
+<h3 id="技巧75-使用圆括号捕获子匹配"><a href="#技巧75-使用圆括号捕获子匹配" class="headerlink" title="技巧75 使用圆括号捕获子匹配"></a>技巧75 使用圆括号捕获子匹配</h3><p>eg patterns/springtime.txt  </p>
+<pre><code class="txt">I love Paris in the  
+the springtime.
+</code></pre>
+<p><code>/\v&lt;(\w+)\_s+\1&gt;</code>专门用来匹配重复单词的正则表达式。<code>\v</code>使用very magic搜索模式，<code>&lt;</code>和<code>&gt;</code>两符号用于匹配单词的边界；<code>(\w+)</code>任何圆括号内部的匹配文本都会被自动保存到一个临时仓库，可以用<code>\1</code>引用这段被捕获的文本；<code>\_s</code>会匹配空白符或换行符；<code>+</code>匹配一次或多次前面的表达式。  </p>
+<p><strong>使用圆括号，但不捕获其内容</strong>  </p>
+<p>有时我们只想使用圆括号的分组功能，但并不关心所捕获的子匹配。例如，可以使用以下模式来匹配我名字的两种形式：<code>/\v(And|D)rew Neil</code>。  </p>
+<p>有时使用圆括号的目的在于匹配“ Andrew”或者“ Drew”，但可能并不想捕获位于圆括号内部的“ And 或 D”。我们可以在圆括号前面加上% ，指示 Vim 不要将括号内的内容赋给寄存器 \1，就像这样：<code>/\v%(And|D)rew Neil</code>。  </p>
+<h3 id="技巧76-界定单词的边界"><a href="#技巧76-界定单词的边界" class="headerlink" title="技巧76 界定单词的边界"></a>技巧76 界定单词的边界</h3><blockquote>
+<p>在very magic搜索模式下，用<code>&lt;</code>和<code>&gt;</code>符号表示单词定界符。如果想在very magic搜索模式下匹配尖括号本身的话，必须将其转义。 <code>w</code>匹配单词类字符，包括字母、数字以及符号<code>_</code>，而<code>W</code>则用来匹配除单词类字符以外的其他字符。   </p>
+</blockquote>
+<h3 id="技巧77-界定匹配的边界"><a href="#技巧77-界定匹配的边界" class="headerlink" title="技巧77 界定匹配的边界"></a>技巧77 界定匹配的边界</h3><pre><code class="txt">Match &quot;quoted words&quot;---not quote marks.
+</code></pre>
+<p><code>/\v&quot;\zs[^&quot;]+\ze&quot;</code>匹配除引号之外的一个或多个字符；  </p>
+<h2 id="第13章-查找"><a href="#第13章-查找" class="headerlink" title="第13章 查找"></a>第13章 查找</h2><h3 id="技巧80-高亮查找匹配"><a href="#技巧80-高亮查找匹配" class="headerlink" title="技巧80 高亮查找匹配"></a>技巧80 高亮查找匹配</h3><p><code>:set hlsearch</code>启用高亮查找；<br><code>:set nohlsearch</code>/<code>set hls!</code>禁用高亮查找；<br><code>:nohlsearch</code>使得高亮功能一直处于关闭状态，直到执行新的或重复的查找命令为止；  </p>
+<p><strong>创建用于关闭高亮功能的快捷键</strong>  </p>
+<p><code>:noh&lt;CR&gt;</code>虽然可以禁用查找高亮功能，但我们在键盘操作上也花费了不少功夫。通过创建映射项，可以让我们加速操作，例如：  </p>
+<pre><code class="vim"><span class="keyword">nnoremap</span> <span class="symbol">&lt;silent&gt;</span> <span class="symbol">&lt;C-l&gt;</span> :<span class="symbol">&lt;C-u&gt;</span><span class="keyword">nohlsearch</span><span class="symbol">&lt;CR&gt;</span><span class="symbol">&lt;C-l&gt;</span>
+</code></pre>
+<p><code>&lt;C-l&gt;</code>通常用于清除并重绘显示屏（参见 :h CTRL-L ）。而新的映射项，是在原有基础之上增加了暂时关闭查找高亮的功能。  </p>
+<h3 id="技巧81-在执行查找前预览第一处匹配"><a href="#技巧81-在执行查找前预览第一处匹配" class="headerlink" title="技巧81 在执行查找前预览第一处匹配"></a>技巧81 在执行查找前预览第一处匹配</h3><p><code>:set incsearch</code>根据已在查找域中输入的文本，预览第一处匹配。<br><code>&lt;C-r&gt;&lt;C-w&gt;</code>用当前预览的匹配结果对查找域进行自动补全；  </p>
+<h3 id="技巧82-统计当前模式的匹配个数"><a href="#技巧82-统计当前模式的匹配个数" class="headerlink" title="技巧82 统计当前模式的匹配个数"></a>技巧82 统计当前模式的匹配个数</h3><p><code>:%s///gn</code>用:substitute命令统计当前文档中的匹配个数，标志位n会抑制正常的替换动作，该命令不会对每处匹配进行替换。此处将查找域留空，旨在让Vim使用当前的查找模式；  </p>
+<h3 id="技巧83-将光标偏移到查找匹配的结尾"><a href="#技巧83-将光标偏移到查找匹配的结尾" class="headerlink" title="技巧83 将光标偏移到查找匹配的结尾"></a>技巧83 将光标偏移到查找匹配的结尾</h3><p><code>/lang/e</code>这样执行查找命令后，光标会被定位到匹配的lang的结尾g字母上；<br><code>//e</code>这样把查找域留空时，Vim将重用上一次的查找模式；  </p>
+<h3 id="技巧86-查找当前高亮选区中的文本"><a href="#技巧86-查找当前高亮选区中的文本" class="headerlink" title="技巧86 查找当前高亮选区中的文本"></a>技巧86 查找当前高亮选区中的文本</h3><blockquote>
+<p>在普通模式下，<code>*</code>命令可以查找光标下的单词。可以重新定义可视模式下的<code>*</code>命令，使其可以查找当前选中的文本，而不是光标下的单词。  </p>
+</blockquote>
+<p>用以下这段 Vim 脚本就能够完成任务：  </p>
+<pre><code class="vim"><span class="keyword">xnoremap</span> * :<span class="symbol">&lt;C-u&gt;</span><span class="keyword">call</span> <span class="symbol">&lt;SID&gt;</span>VSetSearch()<span class="symbol">&lt;CR&gt;</span>/<span class="symbol">&lt;C-R&gt;</span>=@/<span class="symbol">&lt;CR&gt;</span><span class="symbol">&lt;CR&gt;</span>  
+<span class="keyword">xnoremap</span> # :<span class="symbol">&lt;C-u&gt;</span><span class="keyword">call</span> <span class="symbol">&lt;SID&gt;</span>VSetSearch()<span class="symbol">&lt;CR&gt;</span>?<span class="symbol">&lt;C-R&gt;</span>=@/<span class="symbol">&lt;CR&gt;</span><span class="symbol">&lt;CR&gt;</span>  
+
+<span class="function"><span class="keyword">function</span>! <span class="title">s</span>:<span class="title">VSetSearch</span><span class="params">()</span>  </span>
+  <span class="keyword">let</span> temp = @s  
+  norm! <span class="keyword">gv</span><span class="comment">"sy  </span>
+  <span class="keyword">let</span> @/ = <span class="string">'\V'</span> . <span class="keyword">substitute</span>(<span class="built_in">escape</span>(@s, <span class="string">'/\'), '</span>\n<span class="string">', '</span>\\n<span class="string">', '</span>g<span class="string">')  </span>
+<span class="string">  let @s = temp  </span>
+<span class="string">endfunction</span>
+</code></pre>
+<p>可以直接将这段代码粘贴至你的 vimrc 文件中，或者安装 visual star search 插件。在上面的脚本中，不仅 * 命令的原有功能被覆盖了， # 命令也被重新定义为反向查找选中的文本了。 xnoremap 关键字指明此映射项只在可视模式下有效，不包括选择模式（参见 :h mapmode-x ）。  </p>
+<h2 id="第14章-替换"><a href="#第14章-替换" class="headerlink" title="第14章 替换"></a>第14章 替换</h2><h3 id="技巧87-结识substitute命令"><a href="#技巧87-结识substitute命令" class="headerlink" title="技巧87 结识substitute命令"></a>技巧87 结识substitute命令</h3><p><code>:[range]s[ubstitute]/{pattern}/{string}/[flags]</code> substitute命令的语法格式。  </p>
+<p><strong>利用标志位调整subtitute命令的行为</strong>  </p>
+<p>参见 h s_flags。<br>标志位<code>g</code>使得可以修改一行内的所以匹配，而不仅仅是第一处匹配；<br>标志位<code>c</code>可以有机会确认或拒绝每一处修改；<br>标志位<code>n</code>会抑制正常的替换行为；<br>标志位<code>&amp;</code>仅用于指示Vim重用上一次所用过的标志位。  </p>
+<p><strong>替换域中的特殊字符</strong>  </p>
+<p>替换域中有一些特殊字符，参见 h sub-replace-special。  </p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">符号</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>\r</code></td>
+<td style="text-align:left">插入一个换行符</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\t</code></td>
+<td style="text-align:left">插入一个制表符</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\\</code></td>
+<td style="text-align:left">插入一个反斜杠</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\1</code></td>
+<td style="text-align:left">插入第一个子匹配</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\2</code></td>
+<td style="text-align:left">插入第二个子匹配</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\0</code></td>
+<td style="text-align:left">插入匹配模式的所有内容</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&amp;</code></td>
+<td style="text-align:left">插入匹配模式的所有内容</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-</code></td>
+<td style="text-align:left">使用上一次调用:substitute时的{string}</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\={vim script}</code></td>
+<td style="text-align:left">执行{vim script}表达式，并将返回的结果作为替换{string}</td>
+</tr>
+</tbody>
+</table>
+<h2 id="第15章-global命令"><a href="#第15章-global命令" class="headerlink" title="第15章 global命令"></a>第15章 global命令</h2><blockquote>
+<p><code>:global</code>命令允许在某个指定模式的所有匹配行上运行 Ex 命令。  </p>
+</blockquote>
+<p><code>:[range] global[!] /{pattern}/ [cmd]</code>通常形式（参见 :h :g ）。  </p>
+<p>[range]作用范围缺省情况下是整个文件（%），这一点与其他大多数 Ex 命令（包括:delete、:substitute以及:normal）有所不同，这些命令的缺省范围仅为当前行（.）；  </p>
+<p>{pattern}域与查找历史相互关联。这意味着如果将该域留空的话，Vim会自动使用当前的查找模式；  </p>
+<p>[cmd]可以是除 :global 命令之外的任何 Ex 命令。缺省[cmd]使用 :print；  </p>
+<p>:global!或者:vglobal（v表示invert）反转命令的行为，指示Vim在没有匹配到指定模式的行上执行[cmd]。  </p>
+<p>最后需要指出的是:global命令在指定 [range] 内的文本行上执行时通常分为两轮。第一轮，Vim会在所有[pattern]的匹配行上做上标记。第二轮，再在所有已标记的文本行上执行[cmd]。  </p>
+<p><strong>Grep 一词的来历</strong>  </p>
+<p>请仔细琢磨一下 :global 命令的简写形式：<code>:g/re/p</code>。re表示regular expression，而p 是:print的缩写，它作为缺省的[cmd]使用。如果我们把符号/忽略掉，便会发现单词“grep”已然呼之欲出了。  </p>
+<p><code>:g/{start}/ .,{finish} [cmd]</code> :global命令的广义形式。  </p>
+<p>可以将其解读为对从{start}开始，到{finish}结束的所有文本行，执行指定的[cmd]。  </p>
+<h3 id="技巧99-将TODO项收集至寄存器"><a href="#技巧99-将TODO项收集至寄存器" class="headerlink" title="技巧99 将TODO项收集至寄存器"></a>技巧99 将TODO项收集至寄存器</h3><blockquote>
+<p><code>:global</code>和<code>:yank</code>这两条命令结合在一起，可以把所有匹配{pattern}的文本行收集到某个寄存器中。  </p>
+</blockquote>
+<p><code>g/TODO/yank A</code>把当前文件中所有包含TODO的行复制到寄存器<code>a</code>中。此处要用大写字母A引用寄存器，这意味着vim将把内容附加到指定的寄存器，而用小写字母的话，则会覆盖原有寄存器的内容。  </p>
+<h2 id="第16章-通过ctags建立索引，并用其浏览源代码"><a href="#第16章-通过ctags建立索引，并用其浏览源代码" class="headerlink" title="第16章 通过ctags建立索引，并用其浏览源代码"></a>第16章 通过ctags建立索引，并用其浏览源代码</h2><h3 id="技巧101-结识ctags"><a href="#技巧101-结识ctags" class="headerlink" title="技巧101 结识ctags"></a>技巧101 结识ctags</h3><blockquote>
+<p>ctags是一个外部程序，它通过扫描代码库，生成关键字的索引。Vim对于ctags的支持，使得可以快速地跳到函数及类的定义之处，从而实现浏览整个代码库的目的。另外，ctags的输出结果也可以用于建立自动补全的单词列表。  </p>
+</blockquote>
+<p><strong>安装 Exuberant Ctags</strong>  </p>
+<p><code>$ sudo apt-get install exuberant-ctags</code> linux安装命令；<br><code>$ ctags --help</code> 查看版本号（需确保$PATH里/usr/local/bin比/usr/bin优先）；  </p>
+<p><strong>用ctags创建代码库的索引</strong>  </p>
+<p><code>$ ctags *.rb</code> 为当前目录下的所有.rb文件创建索引；<br><code>$ ctags -R</code> 为当前目录及子目录下的所有文件创建索引；  </p>
+<h3 id="技巧102-配置Vim使用ctags"><a href="#技巧102-配置Vim使用ctags" class="headerlink" title="技巧102 配置Vim使用ctags"></a>技巧102 配置Vim使用ctags</h3><p><strong>告诉Vim标签文件在哪里</strong>  </p>
+<p><code>:set tags?</code> 查看‘tags’选项的内容；<br><code>:h tags-option</code> 查看tags选项帮助文档；  </p>
+<p><strong>手动执行ctags</strong>  </p>
+<p><code>:!ctags -R</code> 遍历当前目录及其子目录中文件并建立索引；<br><code>:nnoremap &lt;f5&gt; :!ctags -R</code> 将<f5>键映射为手动建立索引；  </f5></p>
+<p><strong>在每次保存文件时自动执行ctags</strong>  </p>
+<p><code>:autocmd BufWritePost * call system(&quot;ctags -R&quot;)</code> 使用Vim的自动命令功能，在保存文件的改动时，对整个代码库进行更新索引操作；  </p>
+<p><strong>通过版本控制工具的回调机制自动执行ctags</strong>  </p>
+<p>大多数版本控制工具都支持回调机制，允许执行一个脚本来响应代码仓库的事件。可以利用这一点，将源代码控制工具配置成每次提交代码改动时，自动为代码仓库更新索引。具体参考 Tim Pope 的《Effortless Ctags with Git&gt;&gt;。  </p>
+<h3 id="技巧103-使用Vim的标签跳转命令，浏览关键字的定义"><a href="#技巧103-使用Vim的标签跳转命令，浏览关键字的定义" class="headerlink" title="技巧103 使用Vim的标签跳转命令，浏览关键字的定义"></a>技巧103 使用Vim的标签跳转命令，浏览关键字的定义</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>&lt;C-]&gt;</code></td>
+<td style="text-align:left">跳转到匹配当前光标所在关键字的第一处标签</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>g&lt;C-]&gt;</code></td>
+<td style="text-align:left">如果有多处标签可以匹配当前光标所在的关键字，提示用户指定一处进行跳转。如果只有一处匹配，则不会提示，直接进行跳转</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>:tag {keyword}</code></td>
+<td style="text-align:left">跳转到匹配{keyword}的第一处标签</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>:tjump {keyword}</code></td>
+<td style="text-align:left">提示用户从匹配{keyword}的多处标签中指定一处进行跳转。如果只有一处匹配，则不会提示，直接进行跳转</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>:pop</code> 或 <code>&lt;C-t&gt;</code></td>
+<td style="text-align:left">反向遍历标签历史</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>:tag</code></td>
+<td style="text-align:left">正向遍历标签历史</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>:tnext</code></td>
+<td style="text-align:left">跳转到下一处匹配的标签</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>:tprev</code></td>
+<td style="text-align:left">跳转到上一处匹配的标签</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>:tfirst</code></td>
+<td style="text-align:left">跳转到第一处匹配的标签</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>:tlast</code></td>
+<td style="text-align:left">跳转到最后一处匹配的标签</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>:tselect</code></td>
+<td style="text-align:left">提示用户从标签匹配列表中选择一项进行跳转</td>
+</tr>
+</tbody>
+</table>
+<h2 id="第17章-编译代码，并通过Quickfix列表浏览错误信息"><a href="#第17章-编译代码，并通过Quickfix列表浏览错误信息" class="headerlink" title="第17章 编译代码，并通过Quickfix列表浏览错误信息"></a>第17章 编译代码，并通过Quickfix列表浏览错误信息</h2><p><strong>浏览 Quickfix 列表的命令</strong>  </p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>:cnext</code></td>
+<td style="text-align:left">跳转到下一项</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>:cprev</code></td>
+<td style="text-align:left">跳转到上一项</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>:cfirst</code></td>
+<td style="text-align:left">跳转到第一项</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>:clast</code></td>
+<td style="text-align:left">跳转到最后一项</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>:cnfile</code></td>
+<td style="text-align:left">跳转到下一个文件中的第一项</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>:cpfile</code></td>
+<td style="text-align:left">跳转到上一个文件中的最后一项</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>:cc N</code></td>
+<td style="text-align:left">跳转到第 n 项</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>:copen</code></td>
+<td style="text-align:left">打开 quickfix 窗口</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>:cclose</code></td>
+<td style="text-align:left">关闭 quickfix 窗口</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>:colder</code></td>
+<td style="text-align:left">回溯 quickfix 列表到之前的某个版本</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>:cnewer</code></td>
+<td style="text-align:left">回溯 quickfix 列表到之后的某个版本</td>
+</tr>
+</tbody>
+</table>
+<p><strong>结识位置列表</strong>  </p>
+<p>对于每一条用于填充quickfix列表的命令，都有一条对应的命令，把结果保存到位置列表。<code>:make</code>、<code>:grep</code>以及<code>:vimgrep</code>会使用quickfix列表，类似地，<code>:lmake</code>、<code>:lgrep</code>以及<code>:lvimgrep</code>将使用位置列表。 二者有何不同呢？区别就在于，在任一特定的时刻，只能有一个quickfix列表，而位置列表却要多少有多少。  </p>
+<p>任何与位置列表交互的命令（<code>:lnext</code>、<code>:lprev</code>等），仅操作与当前活动窗口相关联的那个位置列表。而 Vim 全局可见的 quickfix 列表则与之形成了鲜明对比。不论哪个标签页或者窗口处于活动状态，一旦运行 <code>:copen</code>，<code>quickfix</code> 窗口都将显示同一份列表。  </p>
+<h2 id="第18章-通过grep、vimgrep以及其他工具对整个工程进行查找"><a href="#第18章-通过grep、vimgrep以及其他工具对整个工程进行查找" class="headerlink" title="第18章 通过grep、vimgrep以及其他工具对整个工程进行查找"></a>第18章 通过grep、vimgrep以及其他工具对整个工程进行查找</h2><h3 id="技巧109-定制grep程序"><a href="#技巧109-定制grep程序" class="headerlink" title="技巧109 定制grep程序"></a>技巧109 定制grep程序</h3><blockquote>
+<p>Vim 的 :grep 命令是外部 grep 程序的包装器。通过配置 ‘grepprg’ 与 ‘grepformat’ 这两个选项，可以对 vim 查找的行为进行定制。grep 采用的时POSIX风格的正则表达式，而ack则采用的是perl风格的正则表达式。  </p>
+</blockquote>
+<p><strong>Vim缺省的grep设置</strong>  </p>
+<pre><code class="vim">grepprg=<span class="string">"grep -n $* /dev/null"</span>  
+grepformat=<span class="string">"%f:%l:%m,%f:%l%m,%f %l%m"</span>
+</code></pre>
+<h3 id="技巧110-使用vim内部的Grep"><a href="#技巧110-使用vim内部的Grep" class="headerlink" title="技巧110 使用vim内部的Grep"></a>技巧110 使用vim内部的Grep</h3><blockquote>
+<p><code>:vimgrep</code>命令允许使用Vim自带的正则表达式引擎（与查找命令相同的模式），实现跨文件的查找功能。  </p>
+</blockquote>
+<h2 id="第19章-自动补全"><a href="#第19章-自动补全" class="headerlink" title="第19章 自动补全"></a>第19章 自动补全</h2><blockquote>
+<p>Vim的自动补全可以在插入模式下被触发。  </p>
+</blockquote>
+<p><strong>触发自动补全</strong>  </p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">补全类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>&lt;C-n&gt;</code></td>
+<td style="text-align:left">普通关键字</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&lt;C-x&gt;&lt;C-n&gt;</code></td>
+<td style="text-align:left">当前缓冲区关键字</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&lt;C-x&gt;&lt;C-i&gt;</code></td>
+<td style="text-align:left">包含文件关键字</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&lt;C-x&gt;&lt;C-]&gt;</code></td>
+<td style="text-align:left">标签文件关键字</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&lt;C-x&gt;&lt;C-k&gt;</code></td>
+<td style="text-align:left">字典查找</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&lt;C-x&gt;&lt;C-l&gt;</code></td>
+<td style="text-align:left">整行补全</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&lt;C-x&gt;&lt;C-f&gt;</code></td>
+<td style="text-align:left">文件名补全</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&lt;C-x&gt;&lt;C-o&gt;</code></td>
+<td style="text-align:left">全能（ Omni）补全</td>
+</tr>
+</tbody>
+</table>
+<p><strong>自动补全与大小写敏感性</strong>  </p>
+<p>当 ‘ignorecase’ 选项被启用后，无论是大写字母还是小写字母， Vim 的查找命令都对它们一视同仁，但这样做也有副作用，即在自动补全时也会忽略大小写。可以通过启用‘infercase’ 选项来修正这一行为。  </p>
+<p><strong>可供弹出式菜单使用的命令</strong>  </p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">按键操作</th>
+<th style="text-align:left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>&lt;C-n&gt;</code></td>
+<td style="text-align:left">使用来自补全列表的下一个匹配项（ next 匹配项）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&lt;C-p&gt;</code></td>
+<td style="text-align:left">使用来自补全列表的上一个匹配项（ previous 匹配项）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&lt;Down&gt;</code></td>
+<td style="text-align:left">选择来自补全列表的下一个匹配项</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&lt;Up&gt;</code></td>
+<td style="text-align:left">选择来自补全列表的上一个匹配项</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&lt;C-y&gt;</code></td>
+<td style="text-align:left">确认使用当前选中的匹配项（ yes）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&lt;C-e&gt;</code></td>
+<td style="text-align:left">还原最早输入的文本（从自动补全中 exit）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&lt;C-h&gt;</code></td>
+<td style="text-align:left">（与 <bs>） 从当前匹配项中删除一个字符</bs></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&lt;C-l&gt;</code></td>
+<td style="text-align:left">从当前匹配项中增加一个字符</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>{char}</code></td>
+<td style="text-align:left">中止自动补全并插入字符 {char}</td>
+</tr>
+</tbody>
+</table>
+<p><strong>定制普通关键字自动补全</strong>  </p>
+<p>可以通过 ‘complete’ 选项来定制普通关键字补全时所扫描的位置。该选项包含一组由逗号分隔的单个字符，当某个参数出现时，就意味着需要扫描该参数所代表的位置。该选项的缺省设置为 complete=.,w,b,u,t,i。我们可以使用以下命令来禁止扫描所有的包含文件：<br><code>:set complete-=i</code><br>或者，我们可以通过以下命令来激活拼写字典自动补全功能：<br><code>:set complete+=k</code><br>请查阅 :h ‘complete’，以便了解各个参数的作用。  </p>
+<h2 id="第20章-利用Vim的拼写检查器，查找并更正拼写错误"><a href="#第20章-利用Vim的拼写检查器，查找并更正拼写错误" class="headerlink" title="第20章 利用Vim的拼写检查器，查找并更正拼写错误"></a>第20章 利用Vim的拼写检查器，查找并更正拼写错误</h2><blockquote>
+<p>通过<code>:set spell</code>将拼写检查器启用后，Vim将对所有未在拼写文件中出现过的单词进行标记。  </p>
+</blockquote>
+<p><strong>普通模式下操作Vim拼写检查器</strong>  </p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>]s</code></td>
+<td style="text-align:left">跳到下一处拼写错误</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[s</code></td>
+<td style="text-align:left">跳到上一处拼写错误</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>z=</code></td>
+<td style="text-align:left">为当前单词提供更正建议</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>zg</code></td>
+<td style="text-align:left">把当前单词添加到拼写文件中</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>zw</code></td>
+<td style="text-align:left">把当前单词从拼写文件中删除</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>zug</code></td>
+<td style="text-align:left">撤销针对当前单词的 zg 或 zw 命令</td>
+</tr>
+</tbody>
+</table>
+<p><strong>插入模式下利用拼写自动补全功能</strong>  </p>
+<p>在插入模式下通过 <code>&lt;C-x&gt;s</code> 命令更正拼写错误，该命令会触发一个特殊的自动补全功能（参见 :h compl-spelling ）。我们还可以通过 <code>&lt;C-x&gt;&lt;C-s&gt;</code> 实现同样的功能，该命令更易于输入。  </p>
+<h2 id="其他补充"><a href="#其他补充" class="headerlink" title="其他补充"></a>其他补充</h2><p><strong>滚动屏幕</strong><br><code>&lt;C-u&gt;</code>在普通模式下向上滚动半屏；<br><code>&lt;C-d&gt;</code>在普通模式下向下滚动半屏；<br><code>&lt;C-b&gt;</code>在普通模式下向上滚动一屏；<br><code>&lt;C-f&gt;</code>在普通模式下向下滚动一屏；  </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/public/2018/02/23/ProGit/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">UpperYounger</p>
+              <p class="site-description motion-element" itemprop="description">Just do it!</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/public/archives/">
+                
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#PracticalVim"><span class="nav-number">1.</span> <span class="nav-text">PracticalVim</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第1章-Vim解决问题的方式"><span class="nav-number">1.1.</span> <span class="nav-text">第1章 Vim解决问题的方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧1-结识-命令"><span class="nav-number">1.1.1.</span> <span class="nav-text">技巧1 结识 . 命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧47-区分实际行与屏幕行"><span class="nav-number">1.1.2.</span> <span class="nav-text">技巧47 区分实际行与屏幕行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧48-基于单词移动"><span class="nav-number">1.1.3.</span> <span class="nav-text">技巧48 基于单词移动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧49-对字符进行查找"><span class="nav-number">1.1.4.</span> <span class="nav-text">技巧49 对字符进行查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧50-通过查找进行移动"><span class="nav-number">1.1.5.</span> <span class="nav-text">技巧50 通过查找进行移动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧51-用精确的文本对象选择选区"><span class="nav-number">1.1.6.</span> <span class="nav-text">技巧51 用精确的文本对象选择选区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧52-删除周边，修改内部"><span class="nav-number">1.1.7.</span> <span class="nav-text">技巧52 删除周边，修改内部</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧53-设置位置标记，以便快速跳回"><span class="nav-number">1.1.8.</span> <span class="nav-text">技巧53 设置位置标记，以便快速跳回</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第9章-在文件间跳转"><span class="nav-number">1.2.</span> <span class="nav-text">第9章 在文件间跳转</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧55-遍历跳转列表"><span class="nav-number">1.2.1.</span> <span class="nav-text">技巧55 遍历跳转列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧56-遍历改变列表"><span class="nav-number">1.2.2.</span> <span class="nav-text">技巧56 遍历改变列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧57-跳转到光标下的文件"><span class="nav-number">1.2.3.</span> <span class="nav-text">技巧57 跳转到光标下的文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第10章-复制和粘贴"><span class="nav-number">1.3.</span> <span class="nav-text">第10章 复制和粘贴</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧59-用寄存器实现删除、复制和粘贴操作"><span class="nav-number">1.3.1.</span> <span class="nav-text">技巧59 用寄存器实现删除、复制和粘贴操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第11章-宏"><span class="nav-number">1.4.</span> <span class="nav-text">第11章 宏</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧64-宏的读取和执行"><span class="nav-number">1.4.1.</span> <span class="nav-text">技巧64 宏的读取和执行</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第12章-按模式匹配及按原义匹配"><span class="nav-number">1.5.</span> <span class="nav-text">第12章 按模式匹配及按原义匹配</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧72-调整查找模式的大小写敏感性"><span class="nav-number">1.5.1.</span> <span class="nav-text">技巧72 调整查找模式的大小写敏感性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧73-按正则表达式查找时，使用-v模式开关"><span class="nav-number">1.5.2.</span> <span class="nav-text">技巧73 按正则表达式查找时，使用\v模式开关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧74-按原义查找文本时，使用-V原义开关"><span class="nav-number">1.5.3.</span> <span class="nav-text">技巧74 按原义查找文本时，使用\V原义开关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧75-使用圆括号捕获子匹配"><span class="nav-number">1.5.4.</span> <span class="nav-text">技巧75 使用圆括号捕获子匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧76-界定单词的边界"><span class="nav-number">1.5.5.</span> <span class="nav-text">技巧76 界定单词的边界</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧77-界定匹配的边界"><span class="nav-number">1.5.6.</span> <span class="nav-text">技巧77 界定匹配的边界</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第13章-查找"><span class="nav-number">1.6.</span> <span class="nav-text">第13章 查找</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧80-高亮查找匹配"><span class="nav-number">1.6.1.</span> <span class="nav-text">技巧80 高亮查找匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧81-在执行查找前预览第一处匹配"><span class="nav-number">1.6.2.</span> <span class="nav-text">技巧81 在执行查找前预览第一处匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧82-统计当前模式的匹配个数"><span class="nav-number">1.6.3.</span> <span class="nav-text">技巧82 统计当前模式的匹配个数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧83-将光标偏移到查找匹配的结尾"><span class="nav-number">1.6.4.</span> <span class="nav-text">技巧83 将光标偏移到查找匹配的结尾</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧86-查找当前高亮选区中的文本"><span class="nav-number">1.6.5.</span> <span class="nav-text">技巧86 查找当前高亮选区中的文本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第14章-替换"><span class="nav-number">1.7.</span> <span class="nav-text">第14章 替换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧87-结识substitute命令"><span class="nav-number">1.7.1.</span> <span class="nav-text">技巧87 结识substitute命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第15章-global命令"><span class="nav-number">1.8.</span> <span class="nav-text">第15章 global命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧99-将TODO项收集至寄存器"><span class="nav-number">1.8.1.</span> <span class="nav-text">技巧99 将TODO项收集至寄存器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第16章-通过ctags建立索引，并用其浏览源代码"><span class="nav-number">1.9.</span> <span class="nav-text">第16章 通过ctags建立索引，并用其浏览源代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧101-结识ctags"><span class="nav-number">1.9.1.</span> <span class="nav-text">技巧101 结识ctags</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧102-配置Vim使用ctags"><span class="nav-number">1.9.2.</span> <span class="nav-text">技巧102 配置Vim使用ctags</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧103-使用Vim的标签跳转命令，浏览关键字的定义"><span class="nav-number">1.9.3.</span> <span class="nav-text">技巧103 使用Vim的标签跳转命令，浏览关键字的定义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第17章-编译代码，并通过Quickfix列表浏览错误信息"><span class="nav-number">1.10.</span> <span class="nav-text">第17章 编译代码，并通过Quickfix列表浏览错误信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第18章-通过grep、vimgrep以及其他工具对整个工程进行查找"><span class="nav-number">1.11.</span> <span class="nav-text">第18章 通过grep、vimgrep以及其他工具对整个工程进行查找</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧109-定制grep程序"><span class="nav-number">1.11.1.</span> <span class="nav-text">技巧109 定制grep程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧110-使用vim内部的Grep"><span class="nav-number">1.11.2.</span> <span class="nav-text">技巧110 使用vim内部的Grep</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第19章-自动补全"><span class="nav-number">1.12.</span> <span class="nav-text">第19章 自动补全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第20章-利用Vim的拼写检查器，查找并更正拼写错误"><span class="nav-number">1.13.</span> <span class="nav-text">第20章 利用Vim的拼写检查器，查找并更正拼写错误</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他补充"><span class="nav-number">1.14.</span> <span class="nav-text">其他补充</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">UpperYounger</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.0.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/public/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/public/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/public/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/public/js/src/utils.js?v=6.0.3"></script>
+
+  <script type="text/javascript" src="/public/js/src/motion.js?v=6.0.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/public/js/src/scrollspy.js?v=6.0.3"></script>
+<script type="text/javascript" src="/public/js/src/post-details.js?v=6.0.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/public/js/src/bootstrap.js?v=6.0.3"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
